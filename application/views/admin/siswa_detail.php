@@ -7,15 +7,15 @@
                 </div>
                 <i class="fa fa-users"></i>
                 <h3 class="box-title">
-                    Data Siswa
+                    Mengelola Data Siswa
                 </h3>
             </div>
             <div class="box">
                 <div class="box-body">
                  <table class="table table-striped">                               
                         <tr>
-                            <th width='30%'>NIM Siswa</th>
-                            <td><?php echo $nim; ?></td>
+                            <th width='30%'>NIS</th>
+                            <td><?php echo $nis; ?></td>
                         </tr>
                         <tr>
                             <th width='30%'>Nama Siswa</th>

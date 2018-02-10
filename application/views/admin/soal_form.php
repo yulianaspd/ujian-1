@@ -1,81 +1,3 @@
-<script src="<?php echo base_url();?>assets/tinymce/js/tinymce/tinymce.dev.js"></script>
-<script src="<?php echo base_url();?>assets/tinymce/js/tinymce/plugins/table/plugin.dev.js"></script>
-<script src="<?php echo base_url();?>assets/tinymce/js/tinymce/plugins/paste/plugin.dev.js"></script>
-<script src="<?php echo base_url();?>assets/tinymce/js/tinymce/plugins/spellchecker/plugin.dev.js"></script>
-<script>
-    tinymce.init({
-        selector: "textarea",
-        theme: "modern",
-        plugins: [
-            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-            "save table contextmenu directionality emoticons template paste textcolor importcss"
-        ],
-        content_css: "css/development.css",
-        add_unload_trigger: false,
-
-        toolbar1: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons table",
-        toolbar2: "custompanelbutton textbutton spellchecker",
-
-        image_advtab: true,
-
-        style_formats: [
-            {title: 'Bold text', format: 'h1'},
-            {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
-            {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
-            {title: 'Example 1', inline: 'span', classes: 'example1'},
-            {title: 'Example 2', inline: 'span', classes: 'example2'},
-            {title: 'Table styles'},
-            {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
-        ],
-
-        template_replace_values : {
-            username : "Jack Black"
-        },
-
-        template_preview_replace_values : {
-            username : "Preview user name"
-        },
-
-        //file_browser_callback: function() {},
-
-        templates: [ 
-            {title: 'Some title 1', description: 'Some desc 1', content: '<strong class="red">My content: {$username}</strong>'}, 
-            {title: 'Some title 2', description: 'Some desc 2', url: 'development.html'} 
-        ],
-
-        setup: function(ed) {
-            ed.addButton('custompanelbutton', {
-                type: 'panelbutton',
-                text: 'Panel',
-                panel: {
-                    type: 'form',
-                    items: [
-                        {type: 'button', text: 'Ok'},
-                        {type: 'button', text: 'Cancel'}
-                    ]
-                }
-            });
-
-            ed.addButton('textbutton', {
-                type: 'button',
-                text: 'Text'
-            });
-        },
-
-        spellchecker_callback: function(method, words, callback) {
-            if (method == "spellcheck") {
-                var suggestions = {};
-
-                for (var i = 0; i < words.length; i++) {
-                    suggestions[words[i]] = ["First", "second"];
-                }
-
-                callback(suggestions);
-            }
-        }
-    });
-</script>
 <aside class="right-side">
     <section class="col-lg-10 connectedSortable">
         <div class="box box-primary">
@@ -87,10 +9,10 @@
                 <h3 class="box-title">
                     <?php
                         if($stat == 'new'){
-        				    echo "Form Tambah Soal";
+        				    echo "Mengelola Data Soal - Tambah Soal";
         				}
         			    else{
-        				    echo "Form Edit Soal";
+        				    echo "Mengelola Data Soal - Edit Soal";
         				}
         			?>
                 </h3>
@@ -126,9 +48,9 @@
                             </div>
                             <select class="form-control" name="jurusan" value="<?=$jurusan ?>"> 
                                 <option>TKI</option>
-                                <option>ADM Perkantoran</option>
-                                <option>Akutansi</option>
-                                <option>Tata Niaga</option>
+                                <option>ADM-Perkantoran</option>
+                                <option>Akuntansi</option>
+                                <option>Pemasaran</option>
                                 <option>Keperawatan</option>
                             </select>
                          </div>   
@@ -148,7 +70,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="a" value="<?=$a ?>"/>
+                            <input type="text" class="form-control" name="a" value="<?=$a ?>" required=""/>
                          </div>
                     </div>
                     <div class="form-group">
@@ -157,7 +79,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="b" value="<?=$b ?>"/>
+                            <input type="text" class="form-control" name="b" value="<?=$b ?>" required=""/>
                          </div>
                     </div>
                    <div class="form-group">
@@ -166,7 +88,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="c" value="<?=$c ?>"/>
+                            <input type="text" class="form-control" name="c" value="<?=$c ?>" required=""/>
                          </div>
                     </div>
                     <div class="form-group">
@@ -175,7 +97,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="d" value="<?=$d ?>"/>
+                            <input type="text" class="form-control" name="d" value="<?=$d ?>" required=""/>
                          </div>
                     </div>
                     <div class="form-group">
@@ -184,7 +106,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="e" value="<?=$e ?>"/>
+                            <input type="text" class="form-control" name="e" value="<?=$e ?>" required=""/>
                          </div>
                     </div>
                     <div class="form-group">
@@ -194,11 +116,11 @@
                                 <i class="fa fa-check-square"></i>
                             </div>
                             <select class="form-control" name="jawaban" value="<?=$jawaban ?>">
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
-                                <option>D</option>
-                                <option>E</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
                             </select>
                          </div>   
                     </div>
@@ -209,7 +131,7 @@
         						      echo "Simpan Data Soal";
         					       }
         					       else{
-        						      echo "Update Data Soal";
+        						      echo "Perbarui Data Soal";
         					       }
         				    ?>
                         </button>

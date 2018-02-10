@@ -70,23 +70,28 @@
                     <ul class="sidebar-menu">
                         <li>
                             <a href="<?php echo base_url();?>admin">
-                                <i class="fa fa-desktop"></i> <span>Dashboard</span>
+                                <i class="fa fa-desktop"></i> <span>Beranda</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url();?>admin/siswa">
+                                <i class="fa fa-desktop"></i> <span>Mengelola Data Siswa</span>
                             </a>
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>admin/mapel">
-                                <i class="fa fa-desktop"></i> <span>Mata Pelajaran</span>
+                                <i class="fa fa-desktop"></i> <span>Mengelola Data Mapel</span>
                             </a>
                         </li>
-                         <li>
+                        <li>
                             <a href="<?php echo base_url();?>admin/soal">
-                                <i class="fa fa-desktop"></i> <span>Manajemen Soal</span>
+                                <i class="fa fa-desktop"></i> <span>Mengelola Data Soal</span>
                             </a>
                         </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-briefcase"></i>
-                                <span>Data Soal</span>
+                                <span>Manajemen Data Soal</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             
@@ -107,27 +112,42 @@
                             </ul>
                             
                         </li>
-                         <li>
-                            <a href="<?php echo base_url();?>admin/siswa">
-                                <i class="fa fa-desktop"></i> <span>Manajemen Siswa</span>
+                        <li>
+                            <a href="<?php echo base_url();?>admin/pembahasan">
+                                <i class="fa fa-desktop"></i> <span>Mengelola Data Pembahasan</span>
                             </a>
                         </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-users"></i>
-                                <span>Hasil Ujian</span>
+                                <span>Hasil Nilai Ujian</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="<?php echo base_url();?>admin/hasil"><i class="fa fa-angle-double-right"></i> <i class="fa fa-picture-o"></i> 
-                                       Hasil Ujian
+                                    <a href="<?php echo base_url();?>admin/nilai"><i class="fa fa-angle-double-right"></i> <i class="fa fa-picture-o"></i> 
+                                       Hasil Nilai Ujian
                                     </a>
                                 </li>
-                                  <li>
-                                    <a href="<?php echo base_url();?>admin/laporan"><i class="fa fa-angle-double-right"></i> <i class="fa fa-picture-o"></i> 
-                                       Laporan Ujian
+                                <li class="treeview">
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> <i class="fa fa-picture-o"></i> 
+                                       Laporan Nilai Ujian
                                     </a>
+                                    <ul class="treeview-menu">
+                                        <?php
+                                            $no = 1; 
+                                            foreach ($mapels as $m) {
+                                        ?>           
+                                            <li>
+                                                <a href="<?php echo base_url();?>admin/hasil_data/<?php echo $m['nama_mapel']; ?>">
+                                                    <i class="fa fa-angle-double-right"></i> 
+                                                   <?php echo $m['nama_mapel']; ?>
+                                                </a>
+                                            </li>
+                                        <?php
+                                            }
+                                        ?>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>

@@ -36,9 +36,10 @@
 		$response = new usr();
 		$response->success 	= 1;
 		$response->message 	= "Selamat datang ".$row['username'];
-		$response->id_siswa = $row['id_siswa'];
+		$response->nis 		= $row['nis'];
+		$response->nama 	= $row['nama'];
 		$response->username = $row['username'];
-		$response->jurusan = $row['jurusan'];
+		$response->jurusan  = $row['jurusan'];
 		die(json_encode($response));
 		
 	} else { 

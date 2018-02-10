@@ -8,7 +8,7 @@
                             <?=$siswa ?>
                         </h3>
                         <p>
-                            Data Siswa
+                            Mengelola Data Siswa
                         </p>
                     </div>
                     <div class="icon">
@@ -27,7 +27,7 @@
                             <?=$mapel ?>
                         </h3>
                         <p>
-                            Data Mata Pelajaran
+                            Mengelola Data Mata Pelajaran
                         </p>
                     </div>
                     <div class="icon">
@@ -46,7 +46,7 @@
                             <?=$soal ?>
                         </h3>
                         <p>
-                            Data Soal
+                            Mengelola Data Soal
                         </p>
                     </div>
                     <div class="icon">

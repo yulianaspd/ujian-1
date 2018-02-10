@@ -40,5 +40,13 @@ class Model_admin extends CI_Model {
 		return $this->db->query("select * from tb_siswa $where; ");
 	}
 
+	function getBahas($where = ''){
+		return $this->db->query("select * from tb_bahas $where; ");
+	}
+
+	function getNilai($where = ''){
+		return $this->db->query("select * from tb_nilai $where; ");
+	}
+
 
 }

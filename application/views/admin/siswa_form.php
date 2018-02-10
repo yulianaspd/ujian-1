@@ -9,10 +9,10 @@
                 <h3 class="box-title">
                     <?php
                         if($stat == 'new'){
-        				    echo "Form Tambah Siswa";
+        				    echo "Mengelola Data Siswa - Tambah Siswa";
         				}
         			    else{
-        				    echo "Form Edit Siswa";
+        				    echo "Mengelola Data Siswa - Edit Siswa";
         				}
         			?>
                 </h3>
@@ -21,14 +21,14 @@
             <div class="box-footer">
                 <form action="<?php echo base_url('admin/siswasimpan');?>" enctype="multipart/form-data" method="POST">
                 	<div class="form-group">
-                        <label>NIM Siswa</label>
+                        <label>NIS</label>
                         <input type="hidden" name="kode" value="<?=$kode?>" />
                         <input type="hidden" name="stat" value="<?=$stat?>" />
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="nim" value="<?=$nim ?>"/>
+                            <input type="text" class="form-control" name="nis" value="<?=$nis ?>"  required=""/>
                          </div>
                     </div>
                     <div class="form-group">
@@ -37,7 +37,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="nama" value="<?=$nama ?>"/>
+                            <input type="text" class="form-control" name="nama" value="<?=$nama ?>" required=""/>
                          </div>
                     </div>
                     <div class="form-group">
@@ -46,7 +46,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="tempat_lahir" value="<?=$tempat_lahir ?>"/>
+                            <input type="text" class="form-control" name="tempat_lahir" value="<?=$tempat_lahir ?>" required=""/>
                             <input type="date" class="form-control" name="tanggal_lahir" value="<?=$tanggal_lahir ?>"/>
                          </div>
                     </div>
@@ -71,9 +71,9 @@
                             <select class="form-control" name="agama" value="<?=$agama ?>"> 
                                 <option>Islam</option>
                                 <option>Kristen</option>
+                                <option>Katholik</option>
                                 <option>Hindu</option>
                                 <option>Budha</option>
-                                <option>konghucu</option>
                             </select>
                          </div>   
                     </div>
@@ -83,7 +83,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="alamat" value="<?=$alamat ?>"/>
+                            <input type="text" class="form-control" name="alamat" value="<?=$alamat ?>" required=""/>
                          </div>
                     </div>
                    <div class="form-group">
@@ -94,9 +94,9 @@
                             </div>
                             <select class="form-control" name="jurusan" value="<?=$jurusan ?>"> 
                                 <option>TKI</option>
-                                <option>ADM Perkantoran</option>
-                                <option>Akutansi</option>
-                                <option>Tata Niaga</option>
+                                <option>ADM-Perkantoran</option>
+                                <option>Akuntansi</option>
+                                <option>Pemasaran</option>
                                 <option>Keperawatan</option>
                             </select>
                          </div>   
@@ -107,7 +107,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="username" value="<?=$username ?>"/>
+                            <input type="text" class="form-control" name="username" value="<?=$username ?>" required=""/>
                          </div>
                     </div>
                     <div class="form-group">
@@ -116,30 +116,18 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="password" value="<?=$password ?>"/>
+                            <input type="text" class="form-control" name="password" value="<?=$password ?>" required=""/>
                          </div>
                     </div>
-                    <!--
-                    <div class="form-group">
-                        <label>Foto Siswa</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-camera"></i>
-                            </div>
-                             <input type="file" class="btn btn-primary" name="foto" required="">
-                        </div>
-                        <p>* Tipe file berupa file JPG/PNG</p>
-                    </div>
-                    -->             
                     <div class="box-footer">
         				<button type="submit" class="btn btn-warning btn-block btn-sm">
                      	     <?php
-                   			      if($stat == 'new'){
-        						      echo "Simpan Data Siswa";
-        					       }
-        					       else{
-        						      echo "Update Data Siswa";
-        					       }
+                   			  if($stat == 'new'){
+        						  echo "Simpan Data Siswa";
+        					   }
+        					   else{
+        						  echo "Perbarui Data Siswa";
+        					   }
         				    ?>
                         </button>
         		    </div>

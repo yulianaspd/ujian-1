@@ -9,7 +9,7 @@
                 </div><!-- /. tools -->
                 <i class="fa fa-list"></i>
                 <h3 class="box-title">
-                    Data Siswa
+                    Mengelola Data Siswa
                 </h3>
             </div>
             <div class="box-footer">
@@ -20,7 +20,7 @@
                 <table width="100%" border="1" bordercolor="#CCCCCC" cellspacing="1" cellpadding="1" class="table table-striped">
                     <tr>
                         <td><b>No.</b></td>
-                        <td width="15%"><b>NIM Siswa</b></td>
+                        <td width="15%"><b>NIS</b></td>
                         <td width="30%"><b>Nama Siswa</b></td>
                         <td width="20%"><b>Jurusan</b></td>
                         <td width="20%"><b>Username</b></td>
@@ -32,7 +32,7 @@
                     ?>
                     <tr>
                         <td align="center"><?php echo $no++; ?></td>
-                        <td><?php echo $s['nim']; ?></td>
+                        <td><?php echo $s['nis']; ?></td>
                         <td><?php echo $s['nama']; ?></td>
                         <td><?php echo $s['jurusan']; ?></td>
                         <td><?php echo $s['username']; ?></td>

@@ -15,9 +15,7 @@ class Admin extends CI_Controller {
 	function index(){	
 
 		$user			= $this->session->userdata('login');
-
 		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel desc')->result_array();
-
 		$sisw			= $this->model_admin->getSiswa();
 		$siswa			= $sisw->num_rows();
 		$mape			= $this->model_admin->getMapel();
@@ -113,7 +111,7 @@ class Admin extends CI_Controller {
 		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel desc')->result_array();
 		
 		$data 			= array(
-			  				'title'			=> 'Data Mata Pelajaran',
+			  				'title'			=> 'Mengelola Mata Pelajaran',
 			  				'user'			=> $this->session->userdata['nama'],
 			  				'mapels'		=> $mapels,
 			  				'mapel'			=> $mapel,
@@ -131,7 +129,7 @@ class Admin extends CI_Controller {
 		$this->load->helper('url');
 		
 		$data			= array(
-							'title'			=> 'Tambah Mata Pelajaran Baru',
+							'title'			=> 'Mengelola Mata Pelajaran',
 							'user'			=> $this->session->userdata['nama'],
 							'mapel'			=> $mapel,
 							'kode'			=> '',
@@ -196,7 +194,7 @@ class Admin extends CI_Controller {
 		$data_konten	= $this->model_admin->getMapel("where id_mapel = '$kode'")->result_array();
 		
 		$data			= array(
-							'title'			=> 'Data Mata Pelajaran',
+							'title'			=> 'Mengelola Mata Pelajaran',
 							'user'			=> $this->session->userdata['nama'],
 							'mapels'		=> $mapels,
 							'kode'			=> $data_konten[0]['id_mapel'],
@@ -229,7 +227,7 @@ class Admin extends CI_Controller {
 		$soal			= $this->model_admin->getSoal("where nama_mapel = '$kode'")->result_array();
 		
 		$data 			= array(
-			  				'title'			=> 'Data Soal Pelajaran',
+			  				'title'			=> 'Mengelola Mata Pelajaran',
 			  				'user'			=> $this->session->userdata['nama'],
 			  				'mapels'		=> $mapels,
 			  				'soal'			=> $soal,
@@ -244,10 +242,10 @@ class Admin extends CI_Controller {
 		$this->load->helper('text');
 		$user			= $this->session->userdata('login');
 		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel desc')->result_array();
-		$soal			= $this->model_admin->selectdata('tb_soal order by id_soal desc')->result_array();
+		$soal			= $this->model_admin->selectdata('tb_soal order by id_soal asc')->result_array();
 		
 		$data 			= array(
-			  				'title'			=> 'Data Soal',
+			  				'title'			=> 'Mengelola Data Soal',
 			  				'mapels'		=> $mapels,
 			  				'user'			=> $this->session->userdata['nama'],
 			  				'soal'			=> $soal,
@@ -265,7 +263,7 @@ class Admin extends CI_Controller {
 		$this->load->helper('url');
 		
 		$data			= array(
-							'title'			=> 'Tambah Soal Baru',
+							'title'			=> 'Mengelola Data Soal',
 							'user'			=> $this->session->userdata['nama'],
 							'mapels'		=> $mapels,
 							'kode'			=> '',
@@ -359,7 +357,7 @@ class Admin extends CI_Controller {
 		$data_konten	= $this->model_admin->getSoal("where id_soal = '$kode'")->result_array();
 		
 		$data			= array(
-							'title'			=> 'Data Soal',
+							'title'			=> 'Mengelola Data Soal',
 							'user'			=> $this->session->userdata['nama'],
 							'mapels'		=> $mapels,
 							'kode'			=> $data_konten[0]['id_soal'],
@@ -401,7 +399,7 @@ class Admin extends CI_Controller {
 		$siswa			= $this->model_admin->selectdata('tb_siswa order by id_siswa desc')->result_array();
 		
 		$data 			= array(
-			  				'title'			=> 'Data Siswa',
+			  				'title'			=> 'Mengelola Data Siswa',
 			  				'user'			=> $this->session->userdata['nama'],
 			  				'mapels'		=> $mapels,
 			  				'siswa'			=> $siswa,
@@ -419,11 +417,11 @@ class Admin extends CI_Controller {
 		$this->load->helper('url');
 		
 		$data			= array(
-							'title'			=> 'Tambah Siswa Baru',
+							'title'			=> 'Mengelola Data Soal',
 							'user'			=> $this->session->userdata['nama'],
 							'mapels'		=> $mapels,
 							'kode'			=> '',
-							'nim'			=> '',
+							'nis'			=> '',
 							'nama'			=> '',
 							'jk'			=> '',
 							'tempat_lahir'	=> '',
@@ -446,7 +444,7 @@ class Admin extends CI_Controller {
 		if($_POST){
 			$this->load->helper('url');
 			$kode			= $this->input->post('kode');
-			$nim			= $this->input->post('nim');
+			$nis			= $this->input->post('nis');
 			$nama			= $this->input->post('nama');
 			$jk				= $this->input->post('jk');
 			$tempat_lahir	= $this->input->post('tempat_lahir');
@@ -490,7 +488,7 @@ class Admin extends CI_Controller {
 				*/
 				
 				$data = array(
-					  'nim'				=> $nim,
+					  'nis'				=> $nis,
 					  'nama'			=> $nama,
 					  'jk'				=> $jk,
 					  'tempat_lahir'	=> $tempat_lahir,
@@ -547,7 +545,7 @@ class Admin extends CI_Controller {
 				*/
 
 				$data = array(
-					  'nim'				=> $nim,
+					  'nis'				=> $nis,
 					  'nama'			=> $nama,
 					  'jk'				=> $jk,
 					  'tempat_lahir'	=> $tempat_lahir,
@@ -580,10 +578,10 @@ class Admin extends CI_Controller {
 		$data_konten= $this->model_admin->getSiswa("where id_siswa = '$kode'")->result_array();
 		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel')->result_array();
 		$data		= array(
-							'title'			=> 'Data Siswa',
+							'title'			=> 'Mengelola Data Soal',
 							'user'			=> $this->session->userdata['nama'],
 							'mapels'		=> $mapels,
-							'nim'			=> $data_konten[0]['nim'],
+							'nis'			=> $data_konten[0]['nis'],
 							'nama'			=> $data_konten[0]['nama'],
 							'jk'			=> $data_konten[0]['jk'],
 							'tempat_lahir'	=> $data_konten[0]['tempat_lahir'],
@@ -606,11 +604,11 @@ class Admin extends CI_Controller {
 		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel')->result_array();
 		
 		$data			= array(
-							'title'			=> 'Data Siswa',
+							'title'			=> 'Mengelola Data Soal',
 							'user'			=> $this->session->userdata['nama'],
 							'mapels'		=> $mapels,
 							'kode'			=> $data_konten[0]['id_siswa'],
-							'nim'			=> $data_konten[0]['nim'],
+							'nis'			=> $data_konten[0]['nis'],
 							'nama'			=> $data_konten[0]['nama'],
 							'jk'			=> $data_konten[0]['jk'],
 							'tempat_lahir'	=> $data_konten[0]['tempat_lahir'],
@@ -779,6 +777,255 @@ class Admin extends CI_Controller {
                                         <b>Sukses!</b> Data User Berhasil Dihapus
                                     </div>");
 		redirect('admin/user');
+
+	}
+
+	function pembahasan(){
+		
+		$this->load->helper('text');
+		$user			= $this->session->userdata('login');
+		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel')->result_array();
+		$bahas			= $this->model_admin->selectdata('tb_bahas order by id_bahas desc')->result_array();
+		
+		$data 			= array(
+			  				'title'			=> 'Mengelola Pembahasan Soal',
+			  				'user'			=> $this->session->userdata['nama'],
+			  				'mapels'		=> $mapels,
+			  				'bahas'			=> $bahas,
+		);
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/pembahasan_data');
+
+	}
+
+	function pembahasantambah(){
+
+		$user			= $this->session->userdata('login');
+		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel')->result_array();
+		$bahas			= $this->model_admin->selectdata('tb_bahas order by id_bahas')->result_array();
+		$this->load->helper('text');
+		$this->load->helper('url');
+		
+		$data			= array(
+							'title'			=> 'Mengelola Pembahasan Soal',
+							'user'			=> $this->session->userdata['nama'],
+							'mapels'		=> $mapels,
+							'kode'			=> '',
+							'nama_mapel'	=> '',
+							'jurusan'		=> '',
+							'keterangan'	=> '',
+							'file'			=> '',
+							'stat'			=> 'new',
+		);
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/pembahasan_form');
+
+	}
+
+	function pembahasansimpan(){
+
+		if($_POST){
+			$this->load->helper('url');
+			$kode			= $this->input->post('kode');
+			$nama_mapel		= $this->input->post('nama_mapel');
+			$jurusan		= $this->input->post('jurusan');
+			$keterangan		= $this->input->post('keterangan');
+			$stat			= $this->input->post('stat');
+			
+			if($stat == 'new'){
+				if($_FILES['file']['name'] != ""){
+					$config['upload_path']          = 'file';
+                	$config['allowed_types']        = 'pdf';
+                	$config['max_size']             = '1000000';
+					$config['remove_space']			= true;
+					$config['overwrite']			= false;
+					$config['encrypt_name']			= true;
+					$config['max_width'] 			= '';
+					$config['max_height']			= '';
+					
+					$this->load->library('upload',$config);
+					$this->upload->initialize($config);
+					if(!$this->upload->do_upload('file'))
+					{
+						print_r('Terjadi Kesalahan Saat Proses Upload');
+						exit();
+						}
+					else
+					{
+						$file = $this->upload->data();
+						if($file['file_name'])
+						{
+							$data['file'] = $file['file_name'];
+							}
+						$file_name = $data['file'];
+					}
+				}
+				
+				$data = array(
+					  'nama_mapel'	=> $nama_mapel,
+					  'jurusan'		=> $jurusan,
+					  'keterangan'	=> $keterangan,
+					  'file'		=> $file_name,
+				);
+				$this->model_admin->insertdata('tb_bahas',$data);
+				$this->session->set_flashdata("save","<div class='alert alert-info alert-dismissable'>
+                                        <i class='fa fa-info'></i>
+                                        <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                                        <b>Sukses!</b> Data Pembahasan Soal Berhasil Ditambahkan
+                                    </div>");
+				redirect('admin/pembahasan');
+			}
+			else{
+				$this->db->where('id_bahas',$kode);
+				$query	= $this->db->get('tb_bahas');
+				$row	= $query->row();
+				
+				unlink(".images/$row->file");
+				if($_FILES['file']['name'] != ""){
+					$config['upload_path']          = 'file';
+                	$config['allowed_types']        = 'pdf';
+                	$config['max_size']             = '100000';
+					$config['remove_space']			= true;
+					$config['overwrite']			= false;
+					$config['encrypt_name']			= true;
+					$config['max_width'] 			= '';
+					$config['max_height']			= '';
+					
+					$this->load->library('upload',$config);
+					$this->upload->initialize($config);
+					if(!$this->upload->do_upload('file'))
+					{
+						print_r('Terjadi Kesalahan Saat Proses Upload');
+						exit();
+						}
+					else
+					{
+						$file = $this->upload->data();
+						if($file['file_name'])
+						{
+						$data['file'] = $file['file_name'];
+						}
+						$file_name = $data['file'];
+						}
+					}
+				
+				$data = array(
+					  'nama_mapel'	=> $nama_mapel,
+					  'jurusan'		=> $jurusan,
+					  'keterangan'	=> $keterangan,
+					  'file'		=> $file_name,
+				);
+				$this->model_admin->updatedata('tb_bahas',$data,array('id_bahas' => $kode));
+				$this->session->set_flashdata("save","<div class='alert alert-info alert-dismissable'>
+                                        <i class='fa fa-info'></i>
+                                        <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                                        <b>Sukses!</b> Data Pembahasan Soal Berhasil Dirubah
+                                    </div>");
+				redirect('admin/pembahasan');
+				}
+		}
+		else{
+			echo "Halaman tidak ditemukan";
+		}
+
+	}
+
+	function pembahasanedit($kode = 0){
+
+		$user			= $this->session->userdata('login');
+		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel')->result_array();
+		$data_konten	= $this->model_admin->getBahas("where id_bahas = '$kode'")->result_array();
+		$data			= array(
+							'title'			=> 'Mengelola Pembahasan Soal',
+							'user'			=> $this->session->userdata['nama'],
+							'mapels'		=> $mapels,
+							'kode'			=> $data_konten[0]['id_bahas'],
+							'nama_mapel'	=> $data_konten[0]['nama_mapel'],
+							'jurusan'		=> $data_konten[0]['jurusan'],
+							'keterangan'	=> $data_konten[0]['keterangan'],
+							'file'			=> $data_konten[0]['file'],
+							'stat'			=> 'edit',
+		);
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/pembahasan_form');
+
+	}
+
+	function pembahasanhapus($kode = 0){
+
+		$this->model_admin->deldata('tb_bahas',array('id_bahas' =>$kode));
+		$this->session->set_flashdata("save","<div class='alert alert-info alert-dismissable'>
+                                        <i class='fa fa-info'></i>
+                                        <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                                        <b>Sukses!</b> Pembahasan Soal Berhasil Dihapus
+                                    </div>");
+		redirect('admin/pembahasan');
+		
+	}
+
+	function nilai(){
+		
+		$this->load->helper('text');
+		$user			= $this->session->userdata('login');
+		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel')->result_array();
+		$nilai			= $this->model_admin->selectdata('tb_nilai order by nilai desc')->result_array();
+		
+		$data 			= array(
+			  				'title'			=> 'Mengelola Data Nilai Siswa',
+			  				'user'			=> $this->session->userdata['nama'],
+			  				'mapels'		=> $mapels,
+			  				'nilai'			=> $nilai,
+		);
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/nilai_data');
+
+	}
+
+	function nilaihapus($kode = 0){
+
+		$this->model_admin->deldata('tb_nilai',array('id_nilai' =>$kode));
+		$this->session->set_flashdata("save","<div class='alert alert-info alert-dismissable'>
+                                        <i class='fa fa-info'></i>
+                                        <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                                        <b>Sukses!</b> Data Nilai Berhasil Dihapus
+                                    </div>");
+		redirect('admin/nilai');
+		
+	}
+
+	function laporan(){
+		
+		$this->load->helper('text');
+		$user			= $this->session->userdata('login');
+		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel')->result_array();
+		$nilai			= $this->model_admin->selectdata('tb_nilai order by nilai desc')->result_array();
+		
+		$data 			= array(
+			  				'title'			=> 'Laporan Nilai Siswa',
+			  				'user'			=> $this->session->userdata['nama'],
+			  				'mapels'		=> $mapels,
+			  				'nilai'			=> $nilai,
+		);
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/laporan_data');
+
+	}
+
+	function hasil_data($kode = 0){
+		
+		$this->load->helper('text');
+		$user			= $this->session->userdata('login');
+		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel desc')->result_array();
+		$hasil			= $this->model_admin->getNilai("where nama_mapel = '$kode'")->result_array();
+		
+		$data 			= array(
+			  				'title'			=> 'Hasil Peringkat Bank Soal',
+			  				'user'			=> $this->session->userdata['nama'],
+			  				'mapels'		=> $mapels,
+			  				'hasil'			=> $hasil,
+		);
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/hasil_data');
 
 	}
 

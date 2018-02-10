@@ -9,91 +9,83 @@
                 <h3 class="box-title">
                     <?php
                         if($stat == 'new'){
-                            echo "Form Tambah User";
-                        }
-                        else{
-                            echo "Form Edit User";
-                        }
-                    ?>
+        				    echo "Mengelola Data Pembahasan - Tambah Pembahasan Soal";
+        				}
+        			    else{
+        				    echo "Mengelola Data Pembahasan - Edit Pembahasan Soal";
+        				}
+        			?>
                 </h3>
             </div>
 
             <div class="box-footer">
-                <form action="<?php echo base_url('admin/usersimpan');?>" enctype="multipart/form-data" method="POST">
-                    <div class="form-group">
-                        <label>Nama User</label>
+                <form action="<?php echo base_url('admin/pembahasansimpan');?>" enctype="multipart/form-data" method="POST">
+                	<div class="form-group">
+                        <label>Nama Pembahasan</label>
                         <input type="hidden" name="kode" value="<?=$kode?>" />
                         <input type="hidden" name="stat" value="<?=$stat?>" />
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                             <select class="form-control" name="nama" value="<?=$nama ?>" style="width: 100;">
+                            <select class="form-control" name="nama_mapel" value="<?=$nama_mapel ?>" style="width: 100;">
                               <?php 
-                              foreach($siswa as $m){
+                              foreach($mapels as $m){
                                 if(!in_array($m['nama'],$label_post)){
                                   ?>
-                                  <option value="<?php echo $m['nama'] ?>"><?php echo $m['nama'] ?></option>
+                                  <option value="<?php echo $m['nama_mapel'] ?>"><?php echo $m['nama_mapel'] ?></option>
                                   <?php } else { ?>
-                                  <option selected="selected" value="<?php echo $m['nama'] ?>"><?php echo $m['nama'] ?></option>
+                                  <option selected="selected" value="<?php echo $m['nama_mapel'] ?>"><?php echo $m['nama_mapel'] ?></option>
                                   <?php } } ?>
                             </select>
                          </div>
                     </div>
                     <div class="form-group">
-                        <label>Username User</label>
+                        <label>Jurusan</label>
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="username" value="<?=$username ?>" required=""/>
-                         </div>
-                    </div> 
+                            <select class="form-control" name="jurusan" value="<?=$jurusan ?>"> 
+                               <option>TKI</option>
+                                <option>ADM-Perkantoran</option>
+                                <option>Akuntansi</option>
+                                <option>Pemasaran</option>
+                                <option>Keperawatan</option>
+                            </select>
+                         </div>   
+                    </div>
                     <div class="form-group">
-                        <label>Password User</label>
+                        <label>Keterangan</label>
                         <div class="input-group">
                             <div class="input-group-addon">
-                                <i class="fa fa-check-square"></i>
+                                <i class="fa  fa-list-alt"></i>
                             </div>
-                            <input type="text" class="form-control" name="password" value="<?=$password ?>" required=""/>
-                         </div>
+                            <input type="text" class="form-control" name="keterangan" value="<?=$keterangan ?>"/>
+                        </div>
                     </div>
-                     <div class="form-group">
-                        <label>Level User</label>
+                    <div class="form-group">
+                        <label>File Data</label>
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <select class="form-control" name="level" value="<?=$level ?>"> 
-                                <option>Admin</option>
-                                <option>Siswa</option>
-                            </select>
-                         </div>   
-                    </div>
-                     <div class="form-group">
-                        <label>Status User</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-check-square"></i>
-                            </div>
-                            <select class="form-control" name="status" value="<?=$status ?>"> 
-                                <option>Aktif</option>
-                                <option>Tidak</option>
-                            </select>
-                         </div>   
-                    </div>                  
+                             <input type="file" class="btn btn-primary" name="file" required="">
+                        </div>
+                        <p>* Tipe file berupa file PDF</p>
+                    </div>              
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-warning btn-block btn-sm">
-                             <?php
-                                  if($stat == 'new'){
-                                      echo "Simpan Data User";
-                                   }
-                                   else{
-                                      echo "Update Data User";
-                                   }
-                            ?>
+        				<button type="submit" class="btn btn-warning btn-block btn-sm">
+                     	     <?php
+                   			      if($stat == 'new'){
+        						      echo "Simpan Data Pembahasan Soal";
+        					       }
+        					       else{
+        						      echo "Perbarui Data Pembahasan Soal";
+        					       }
+        				    ?>
                         </button>
-                    </div>
+        		    </div>
                 </form>
             </div>
         </div>

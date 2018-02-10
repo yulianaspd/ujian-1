@@ -9,10 +9,10 @@
                 <h3 class="box-title">
                     <?php
                         if($stat == 'new'){
-        				    echo "Form Tambah Mata Pelajaran";
+        				    echo "Mengelola Mata Pelajaran - Tambah Mapel";
         				}
         			    else{
-        				    echo "Form Edit Mata Pelajaran";
+        				    echo "Mengelola Mata Pelajaran - Edit Mapel";
         				}
         			?>
                 </h3>
@@ -28,7 +28,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-check-square"></i>
                             </div>
-                            <input type="text" class="form-control" name="nama_mapel" value="<?=$nama_mapel ?>"/>
+                            <input type="text" class="form-control" name="nama_mapel" value="<?=$nama_mapel ?>" required=""/>
                          </div>
                     </div>
                     <div class="form-group">
@@ -39,9 +39,9 @@
                             </div>
                             <select class="form-control" name="jurusan" value="<?=$jurusan ?>"> 
                                 <option>TKI</option>
-                                <option>ADM Perkantoran</option>
-                                <option>Akutansi</option>
-                                <option>Tata Niaga</option>
+                                <option>ADM-Perkantoran</option>
+                                <option>Akuntansi</option>
+                                <option>Pemasaran</option>
                                 <option>Keperawatan</option>
                             </select>
                          </div>   
@@ -49,12 +49,12 @@
                     <div class="box-footer">
         				<button type="submit" class="btn btn-warning btn-block btn-sm">
                      	     <?php
-                   			      if($stat == 'new'){
-        						      echo "Simpan Data Mata Pelajaran";
-        					       }
-        					       else{
-        						      echo "Update Data Mata Pelajaran";
-        					       }
+                   			   if($stat == 'new'){
+        						    echo "Simpan Mata Pelajaran";
+        					    }
+        					    else{
+        						    echo "Perbarui Mata Pelajaran";
+        					    }
         				    ?>
                         </button>
         		    </div>

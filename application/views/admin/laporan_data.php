@@ -9,56 +9,35 @@
                 </div><!-- /. tools -->
                 <i class="fa fa-list"></i>
                 <h3 class="box-title">
-                    Mengelola Data Soal
+                    Data Nilai
                 </h3>
             </div>
             <div class="box-footer">
-            </div>
-                <a href="<?php echo base_url();?>admin/soaltambah/" class="btn btn-primary btn-sm">
-                    <i class='fa fa-plus-circle'></i> 
-                    Tambah Soal
-                </a>
-                <br /><br />               
+                <br />
+                                    
                 <?php echo $this->session->flashdata('save');?>
                 <table width="100%" border="1" bordercolor="#CCCCCC" cellspacing="1" cellpadding="1" class="table table-striped">
                     <tr>
-                        <td width="4%"><b>No.</b></td>
-                        <td width="15%"><b>Mapel</b></td>
-                        <td width="10%"><b>Jurusan</b></td>
-                        <td width="40%"><b>Soal</b></td>
-                        <td width="30%"><b>Jawaban</b></td>
-                        <td width="5%"><b>Kunci</b></td>
-                        <td colspan="3" align="center"><b>Aksi</b></td>
+                        <td><b>No.</b></td>
+                        <td width="15%"><b>NIS</b></td>
+                        <td width="30%"><b>Nama</b></td>
+                        <td width="20%"><b>Jurusan</b></td>
+                        <td width="20%"><b>Mata Pelajaran</b></td>
+                        <td width="20%"><b>Nilai</b></td>
+                        <td width="20%"><b>Peringkat</b></td>
                     </tr>
                     <?php
                         $no = 1; 
-                        foreach ($soal as $s) {
+                        foreach ($nilai as $s) {
                     ?>
                     <tr>
                         <td align="center"><?php echo $no++; ?></td>
-                        <td><?php echo $s['nama_mapel']; ?></td>
+                        <td><?php echo $s['nis']; ?></td>
+                        <td><?php echo $s['nama']; ?></td>
                         <td><?php echo $s['jurusan']; ?></td>
-                        <td><?php echo $s['pertanyaan']; ?></td>
-
-                        <td>
-                            <?php echo $s['a']; ?> <br /><br />
-                            <?php echo $s['b']; ?> <br /><br />
-                            <?php echo $s['c']; ?> <br /><br />
-                            <?php echo $s['d']; ?> <br /><br />
-                            <?php echo $s['e']; ?> <br /><br />
-                            
-                        </td>
-                        <td><?php echo $s['jawaban']; ?></td>
-                        <td align="center">
-                            <a href="<?=base_url('admin/soaledit')?>/<?=$s['id_soal']?>">
-                                <button class="btn bg-blue btn-circle"><i class="fa fa-edit"></i></button>
-                            </a>
-                        </td>
-                        <td align="center">
-                            <a onclick="return confirm('Yakin ingin menghapus data soal ini..?')" href="<?=base_url('admin/soalhapus')?>/<?=$s['id_soal']?>">
-                                <button class="btn bg-red btn-circle"><i class="fa fa-trash-o"></i></button>
-                            </a>
-                        </td>
+                        <td><?php echo $s['nama_mapel']; ?></td>
+                        <td><?php echo $s['nilai']; ?></td>
+                        <td></td>
                     </tr>
                     <?php
                         }

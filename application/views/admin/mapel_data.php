@@ -9,7 +9,7 @@
                 </div><!-- /. tools -->
                 <i class="fa fa-list"></i>
                 <h3 class="box-title">
-                    Data Mata Pelajaran
+                    Mengelola Data Mata Pelajaran
                 </h3>
             </div>
             <div class="box-footer">
