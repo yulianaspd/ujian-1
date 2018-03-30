@@ -13,6 +13,9 @@
                 </h3>
             </div>
             <div class="box-footer">
+                <a href="<?php echo base_url();?>admin/cetakhasil" class="btn btn-primary btn-sm"><i class='fa fa-plus-circle'></i> 
+                   Cetak Laporan
+                </a><br />
             </div>
                 <br /><br />               
                 <?php echo $this->session->flashdata('save');?>

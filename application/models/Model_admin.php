@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_admin extends CI_Model {
 
+	public function __construct(){
+		parent::__construct();
+		$this->load->database();
+	}
+
 	function selectdata($where = ''){
 		return $this->db->query("select * from $where; ");
 	}
@@ -46,6 +51,12 @@ class Model_admin extends CI_Model {
 
 	function getNilai($where = ''){
 		return $this->db->query("select * from tb_nilai $where; ");
+	}
+
+	function get_all_nilai(){
+		$this->db->from('tb_nilai');
+		$query=$this->db->get();
+		return $query->result();
 	}
 
 

@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2018 at 03:05 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: 30 Mar 2018 pada 03.32
+-- Versi Server: 10.1.28-MariaDB
+-- PHP Version: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,61 +25,61 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_bahas`
+-- Struktur dari tabel `tb_bahas`
 --
 
 CREATE TABLE `tb_bahas` (
   `id_bahas` int(11) NOT NULL,
   `nama_mapel` varchar(50) NOT NULL,
-  `jurusan` enum('TKI','ADM-Perkantoran','Akutansi','Pemasaran','Keperawatan') NOT NULL,
+  `jurusan` enum('TKI','ADM-Perkantoran','Akuntansi','Pemasaran','Keperawatan') NOT NULL,
   `keterangan` varchar(100) NOT NULL,
   `file` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_bahas`
+-- Dumping data untuk tabel `tb_bahas`
 --
 
 INSERT INTO `tb_bahas` (`id_bahas`, `nama_mapel`, `jurusan`, `keterangan`, `file`) VALUES
 (3, 'Bahasa-Indonesia-TKI', 'TKI', 'Pembahasan-Soal', '56ac0c61916729177b2045c2855b11f3.pdf'),
 (4, 'Bahasa-Indonesia-ADM-Perkantoran', 'ADM-Perkantoran', 'Pembahasan Soal', '52fef279d15f5dd9331d5f4acfb67da0.pdf'),
-(5, 'Bahasa-Indonesia-Akutansi', 'Akutansi', 'Pembahasan Soal', '0d5b214bcc6da649de4fb9621bb270e4.pdf'),
-(6, 'Bahasa-Indonesia-Pemasaran', '', 'Pembahasan Soal', '10606ed4b2c6353ff157e7bbbfae400b.pdf'),
+(5, 'Bahasa-Indonesia-Akutansi', 'Akuntansi', 'Pembahasan Soal', '0d5b214bcc6da649de4fb9621bb270e4.pdf'),
+(6, 'Bahasa-Indonesia-Pemasaran', 'Pemasaran', 'Pembahasan Soal', '10606ed4b2c6353ff157e7bbbfae400b.pdf'),
 (7, 'Bahasa-Indonesia-Keperawatan', 'Keperawatan', 'Pembahasan Soal', 'e05c4bacf03a2353938967d682faae03.pdf');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_mapel`
+-- Struktur dari tabel `tb_mapel`
 --
 
 CREATE TABLE `tb_mapel` (
   `id_mapel` int(11) NOT NULL,
   `nama_mapel` varchar(100) NOT NULL,
-  `jurusan` enum('TKI','ADM-Perkantoran','Akutansi','Pemasaran','Keperawatan') NOT NULL
+  `jurusan` enum('TKI','ADM-Perkantoran','Akuntansi','Pemasaran','Keperawatan') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_mapel`
+-- Dumping data untuk tabel `tb_mapel`
 --
 
 INSERT INTO `tb_mapel` (`id_mapel`, `nama_mapel`, `jurusan`) VALUES
 (9, 'Bahasa-Indonesia-TKI', 'TKI'),
 (10, 'Bahasa-Indonesia-ADM-Perkantoran', 'ADM-Perkantoran'),
-(11, 'Bahasa-Indonesia-Akutansi', 'Akutansi'),
+(11, 'Bahasa-Indonesia-Akutansi', 'Akuntansi'),
 (12, 'Bahasa-Indonesia-Pemasaran', 'Pemasaran'),
 (13, 'Bahasa-Indonesia-Keperawatan', 'Keperawatan'),
 (14, 'Matematika-TKI', 'TKI'),
 (15, 'Matematika-ADM-Perkantoran', 'ADM-Perkantoran'),
 (16, 'Matematika-Keperawatan', 'Keperawatan'),
 (17, 'Matematika-Pemasaran', 'Pemasaran'),
-(18, 'Matematika-Akutansi', 'Akutansi'),
+(18, 'Matematika-Akutansi', 'Akuntansi'),
 (19, 'Bahasa-Inggris-Pemasaran', 'Pemasaran'),
-(20, 'Bahasa-Inggris-Akutansi', 'Akutansi'),
+(20, 'Bahasa-Inggris-Akutansi', 'Akuntansi'),
 (21, 'Bahasa-Inggris-ADM-Perkantoran', 'ADM-Perkantoran'),
 (22, 'Bahasa-Inggris-TKI', 'TKI'),
 (23, 'Bahasa-Inggris-Keperawatan', 'Keperawatan'),
-(24, 'Kejuruan-Akutansi', 'Akutansi'),
+(24, 'Kejuruan-Akutansi', 'Akuntansi'),
 (25, 'Kejuruan-ADM-Perkantoran', 'ADM-Perkantoran'),
 (26, 'Kejuruan-TKI', 'TKI'),
 (27, 'Kejuruan-Pemasaran', 'Pemasaran'),
@@ -86,7 +88,7 @@ INSERT INTO `tb_mapel` (`id_mapel`, `nama_mapel`, `jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_nilai`
+-- Struktur dari tabel `tb_nilai`
 --
 
 CREATE TABLE `tb_nilai` (
@@ -95,21 +97,24 @@ CREATE TABLE `tb_nilai` (
   `nama` varchar(50) NOT NULL,
   `nama_mapel` varchar(100) NOT NULL,
   `jurusan` varchar(50) NOT NULL,
-  `benar` int(11) NOT NULL,
-  `nilai` int(11) NOT NULL
+  `benar` double NOT NULL,
+  `nilai` double NOT NULL,
+  `durasi` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_nilai`
+-- Dumping data untuk tabel `tb_nilai`
 --
 
-INSERT INTO `tb_nilai` (`id_nilai`, `nis`, `nama`, `nama_mapel`, `jurusan`, `benar`, `nilai`) VALUES
-(4, '123456', 'Wahaha', 'Bahasa-Indonesia-TKI', 'TKI', 0, 0);
+INSERT INTO `tb_nilai` (`id_nilai`, `nis`, `nama`, `nama_mapel`, `jurusan`, `benar`, `nilai`, `durasi`) VALUES
+(4, '123456', 'Wahaha', 'Bahasa-Indonesia-TKI', 'TKI', 0, 0, ''),
+(5, '8643', 'EVA MARDIANA', 'Bahasa-Indonesia-Keperawatan', 'Keperawatan', 0, 0, '00:52'),
+(6, '8715', 'BAGUS SEPTI YANTO', 'Bahasa-Indonesia-Pemasaran', 'Pemasaran', 0, 0, '00:23');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_siswa`
+-- Struktur dari tabel `tb_siswa`
 --
 
 CREATE TABLE `tb_siswa` (
@@ -119,24 +124,24 @@ CREATE TABLE `tb_siswa` (
   `jk` varchar(20) NOT NULL,
   `tempat_lahir` varchar(50) NOT NULL,
   `tanggal_lahir` date NOT NULL,
-  `agama` enum('Islam','Kristen','Khatolik','Hindu','Budha') NOT NULL,
+  `agama` enum('Islam','Kristen','Katholik','Hindu','Budha') NOT NULL,
   `alamat` varchar(150) NOT NULL,
-  `jurusan` enum('TKI','ADM-Perkantoran','Akutansi','Pemasaran','Keperawatan') NOT NULL,
+  `jurusan` enum('TKI','ADM-Perkantoran','Akuntansi','Pemasaran','Keperawatan') NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_siswa`
+-- Dumping data untuk tabel `tb_siswa`
 --
 
 INSERT INTO `tb_siswa` (`id_siswa`, `nis`, `nama`, `jk`, `tempat_lahir`, `tanggal_lahir`, `agama`, `alamat`, `jurusan`, `username`, `password`) VALUES
 (2, '8594', 'ALBERT FIRDAUS', 'Laki -Laki', 'SURAKARTA', '2000-08-11', 'Kristen', 'Kampung Sewu Rt 05 Rw 06 Sewu, Jebres, Surakarta, 57123', 'TKI', 'albert', '6c5bc43b443975b806740d8e41146479'),
-(3, '8596', 'ANGELICA SEKAR RATNANINGRUM', 'Perempuan', 'SURAKARTA', '1999-08-07', 'Khatolik', 'Tegalharjo Rt 01 Rw 05 Tegalharjo, Jebres, Surakarta, 57128', 'TKI', 'angel', 'f4f068e71e0d87bf0ad51e6214ab84e9'),
+(3, '8596', 'ANGELICA SEKAR RATNANINGRUM', 'Perempuan', 'SURAKARTA', '1999-08-07', 'Katholik', 'Tegalharjo Rt 01 Rw 05 Tegalharjo, Jebres, Surakarta, 57128', 'TKI', 'angel', 'f4f068e71e0d87bf0ad51e6214ab84e9'),
 (4, '8643', 'EVA MARDIANA', 'Perempuan', 'SURAKARTA', '2000-04-26', 'Kristen', 'Jln. Pelangi Timur No. 23 Rt 03 Rw 28 Mojosongo, Jebres, Surakarta, 57127', 'Keperawatan', 'eva', '14bd76e02198410c078ab65227ea0794'),
 (5, '8644', 'FIBIAN ANJANI RAMLI', 'Laki -Laki', 'SURAKARTA', '2000-02-03', 'Islam', 'Petoran Rt 04 Rw 05 Kel. Jebres, Kec. Jebres, Surakarta, 57126', 'Keperawatan', 'febian', '0fd978835477456e301c65c22b408ae8'),
-(6, '8663', 'CLARA DIAH SULASTRI', 'Perempuan', 'SURAKARTA', '2000-08-11', 'Khatolik', 'Purbowardayan Rt 01 Rw 02 Tegalharjo, Jebres, Surakarta, 57128', 'Akutansi', 'clara', '23d1e10df85ef805b442a922b240ce25'),
-(7, '8676', 'SENDITIO BRASTITO', 'Laki -Laki', 'KARANGANYAR', '1998-07-28', 'Islam', 'Gondang Barat Rt 01 Rw 03 Manahan, Banjarsari, Surakarta', 'Akutansi', 'sendito', 'ddba6756681747e635c74b386516fd2e'),
+(6, '8663', 'CLARA DIAH SULASTRI', 'Perempuan', 'SURAKARTA', '2000-08-11', 'Katholik', 'Purbowardayan Rt 01 Rw 02 Tegalharjo, Jebres, Surakarta, 57128', 'Akuntansi', 'clara', '23d1e10df85ef805b442a922b240ce25'),
+(7, '8676', 'SENDITIO BRASTITO', 'Laki -Laki', 'KARANGANYAR', '1998-07-28', 'Islam', 'Gondang Barat Rt 01 Rw 03 Manahan, Banjarsari, Surakarta', 'Akuntansi', 'sendito', 'ddba6756681747e635c74b386516fd2e'),
 (8, '8684', 'DIAN RANI', 'Perempuan', 'SURAKARTA', '2000-09-22', 'Kristen', 'Jln. Merak No. 32 BGI Rt 02 Rw 11 Jaten, Kec. Jaten, Karanganyar, 57771', 'ADM-Perkantoran', 'dian', 'f97de4a9986d216a6e0fea62b0450da9'),
 (9, '8688', 'EVI MARDIANA', 'Perempuan', 'SURAKARTA', '2000-04-26', 'Kristen', 'Petoran Rt 04 Rw 05 Kel. Jebres, Kec. Jebres, Surakarta, 57126', 'ADM-Perkantoran', 'evi', '689635ad79c4a248aa87d21ad4f28422'),
 (10, '8715', 'BAGUS SEPTI YANTO', 'Laki -Laki', 'SURAKARTA', '2000-09-14', 'Islam', 'Kandang Sapi Rt 02 Rw 34 Kel. Jebre, Kec. Jebres, Surakarta, 57126', 'Pemasaran', 'bagus', '17b38fc02fd7e92f3edeb6318e3066d8'),
@@ -145,12 +150,12 @@ INSERT INTO `tb_siswa` (`id_siswa`, `nis`, `nama`, `jk`, `tempat_lahir`, `tangga
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_soal`
+-- Struktur dari tabel `tb_soal`
 --
 
 CREATE TABLE `tb_soal` (
   `id_soal` int(11) NOT NULL,
-  `jurusan` enum('TKI','ADM Perkantoran','Akutansi','Pemasaran','Keperawatan') NOT NULL,
+  `jurusan` enum('TKI','ADM-Perkantoran','Akuntansi','Pemasaran','Keperawatan') NOT NULL,
   `nama_mapel` varchar(50) NOT NULL,
   `pertanyaan` text NOT NULL,
   `jawaban` enum('1','2','3','4','5') NOT NULL,
@@ -162,40 +167,40 @@ CREATE TABLE `tb_soal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_soal`
+-- Dumping data untuk tabel `tb_soal`
 --
 
 INSERT INTO `tb_soal` (`id_soal`, `jurusan`, `nama_mapel`, `pertanyaan`, `jawaban`, `a`, `b`, `c`, `d`, `e`) VALUES
-(17, 'TKI', 'Bahasa-Indonesia-TKI', 'Minat investor  asing yang tinggi ke negara berkembang bisa dilihat dari transaksi yang terjadi di pasar modal. Dalam tiga tahun terakhir, arus modal asing ke pasar saham dan pasar uang di negara berkembang sangat besar.\r\nMakna istilah investor pada paragraf di atas adalah ...\r\n', '1', 'A. nasabah', 'B. pengusaha', 'C. penanam modal', 'D. penguasa ', 'E. pemilik'),
+(17, 'TKI', 'Bahasa-Indonesia-TKI', 'Minat investor  asing yang tinggi ke negara berkembang bisa dilihat dari transaksi yang terjadi di pasar modal. Dalam tiga tahun terakhir, arus modal asing ke pasar saham dan pasar uang di negara berkembang sangat besar.\r\nMakna istilah investor pada paragraf di atas adalah ...', '1', 'A. nasabah', 'B. pengusaha', 'C. penanam modal', 'D. penguasa ', 'E. pemilik'),
 (18, 'TKI', 'Bahasa-Indonesia-TKI', 'Bila anda gemar melakukan perjalanan jauh dengan menggunakan pesawat, berikut ini merupakan cara untuk mendapatkan kenyamanan. Untuk dapat memperoleh kenyamanan, biasakan datang lebih awal, saat memilih tiket pilihan tempat duduk di belakang atau tengah. Hal lain, pilah barang bawaan menjadi dua bagian untuk di kabin dan untuk masuk bagasi. Dalam penerbangan, pakaliah sepatu yang mudah dilepas dan siapkan bacaan.', '3', 'A. Cara melakukan penerbangan yang praktis.', 'B. Strategi dalam melakukanh penerbangan.', 'C. Cara memperoleh kenyamanan dalam penerbangan.', 'D. Hal-hal yang perlu dilakukan dalam penerbangan.', 'E. Kiat-kiat melakukan penerbangan jauh.'),
 (19, 'TKI', 'Bahasa-Indonesia-TKI', 'Perubahan iklim merupakan fenomena yang dipicu oleh kegiatan manusia, terutama yang berkaitan dengan penggunakan bahan bakar fosil dan kegiatan alih guna lahan. Kegiatan tersebut dapat menghasilkan gas yang semakin lama, semakin banyak jumlahnya di atmosfir. Gas-gas tersebut memiliki sifat seperti kaca yang meneruskan radiasi cahaya matahari sehingga suhu atmosfir bumi meningkat. Inilah yang disebut efek rumah kaca yang mengakibatkan pemanasan global.', '4', 'A. Gas-gas hasil pembakaran mematikan ribuan spesies.', 'B. Suhu atmosfir bumi meningkat karena sedikitnya rumah kaca.', 'C. Rumah yang banyak menggunakan bahan kaca.', 'D. Pemanasan global akibat efek rumah kaca.', 'E. Bumi semakin hari semakin padat penduduknya.'),
 (20, 'TKI', 'Bahasa-Indonesia-TKI', 'Susah lebih dari lima jam jaringan listrik didekat SMK Balikpapan rusak.Pihak PLN sedang berusaha memperbaiki kerusakan tersebut. Karena kerusakan itu, pelakaran praktik boga dan busana dihentikan. Maklum saja, dalam berpraktik mereka menggunakan peralatan listrik. Jadi, jika listrik padam meraka tidak bisa praktik memasak dan menjahit. Pertanyaan yang sesuai dengan isi paragraf tersebut adalah...', '2', 'A. Para siswa merasa senang tidak melanjutkan praktik.', 'B. Ketika listrik padam pelajaran praktik dihentikan.', 'C. Para siswa merasa senang saat praktik dibengkel.', 'D. Pemadaman listrik setiap hari merupakan hal yang biasa.', 'E. PLN masih mencari penyebab padamnya listrik.'),
 (21, 'TKI', 'Bahasa-Indonesia-TKI', 'Katakan tidak untuk narkoba!\r\nIsi teks iklan tersebut adalah ...\r\n', '3', 'A. Hati-hati jika ada orang yang menawari narkoba.', 'B. Sekali anda mencoba narkoba pasti anda ketagihan.', 'C. Jangan sekali-sekali menggunakan narkoba.', 'D. Hati-hati terhadap orang yang membawa narkoba.', 'E. Jangan mendekati korban narkoba.'),
 (22, 'TKI', 'Bahasa-Indonesia-TKI', '(1) Akhir-akhir ini jumlah penduduk dikota-kota besar seperti Jakarta mengalami  kenaikan yang signifikan. (2) Kenaikan jumlah penduduk ini disebabkan oleh sebuah fenoma sosial yang terjadi belakangan ini, yaitu urbananisasi. (3) Fenomena inilah yang menyebabkan laju pertumbuhunan penduduk yang tidak terbendung sehingga dapat menyebabkan beberapa permasalahan yang timbul dikota besar. (4) Mengapa hal ini sampai terjadi ? (5) Banyak faktor yang mendorong fenomena ini.\r\nKalimat yang didalamnya terkandung hubungan sebab akibat dalam paragraf tersebut terdapat pada nomer ...\r\n', '3', 'A. (1)', 'B. (2)', 'C. (3)', 'D. (4)', 'E. (5)'),
-(23, 'TKI', 'Bahasa-Indonesia-TKI', 'Perajin kain songket tradisional Minangkabau, Sumatra Barat, bertahan dengan motif kuno berusia ratusan tahun. Perajin memunculkan kembali motif kuno dari songket tua yang tersimpan. Untuk menjaga keaslian produksi, perajin menggunakan alat songket bukan mesin. Tanggapan logis terhadap paragraf tersebut adalah....\r\n\r\n', '4', 'A. Perajin kain songket tradisional Minangkabau bertahan pada motif kuno.', 'B. Motif kuno yang dipertahankan perajinan berusia ratusan tahun.', 'C. Jenis songket tua yang tersimpan kembali dimunculkan.', 'D. Untuk menjaga keaslian produksi, penggunaan alat songket perlu dipertahankan.', 'E. Mesin tidak cocok untuk para perajin kain songket.'),
+(23, 'TKI', 'Bahasa-Indonesia-TKI', 'Perajin kain songket tradisional Minangkabau, Sumatra Barat, bertahan dengan motif kuno berusia ratusan tahun. Perajin memunculkan kembali motif kuno dari songket tua yang tersimpan. Untuk menjaga keaslian produksi, perajin menggunakan alat songket bukan mesin. Tanggapan logis terhadap paragraf tersebut adalah....\r\n', '4', 'A. Perajin kain songket tradisional Minangkabau bertahan pada motif kuno.', 'B. Motif kuno yang dipertahankan perajinan berusia ratusan tahun.', 'C. Jenis songket tua yang tersimpan kembali dimunculkan.', 'D. Untuk menjaga keaslian produksi, penggunaan alat songket perlu dipertahankan.', 'E. Mesin tidak cocok untuk para perajin kain songket.'),
 (24, 'TKI', 'Bahasa-Indonesia-TKI', 'Kartini lahir di Jepara, Jawa tengah, pada tanggal 21 april 1897. Kartini adalah putri dari Adipati Ario Sosrodiningrat, Bupati Jepara, dan M.A Ngasirah, putri dari Nyai Siti Aminah dan Kyai Haji Madirono, seorang guru agama di Telukawur, Jepara.\r\nPada usia dua belas tahun, Kartini harus mengalami masa pingitan. Kartini harus mengalami masa pingitan. Kartini dipingit karena tradisi di tempat tinggalnya. Apabila seorang gadis sudah menamatkan belajar di tingkat sekolah dasar, gadis tersebut harus mengalami masa pingitan hingga pernikahannya tiba. Ringkasan yang sesuai dengan kutipan teks tersebut adalah ...\r\n', '2', 'A. Kartini mengalami masa pingitan selama dua belas tahhun setelah lulus sekolah dasar sampai pernikahaannya.', 'B. Kartini putri seorang bupati dan cucu seorang guru agama, mengalami masa pingitan karena tradisi di tempat tinggalnya.', 'C. Kartini lahir dan dibesarkan di Jepara. Setelah tamat sekolah dasar, setelah tamat sekolah dasar dia melanjutkan kesekolah yang lebih tinggi karna beliau anak bangsawan.', 'D. Kartini sudah menamatkan sekolah dasarnya dan harus dipingit selama dua belas tahun.', 'E. Kartini anak seorang bangsawan, bebas melanjutkan pendidikannya, tetapi juga harus menjalani masa pingitan karena tradisi ditempat tinggalnya.'),
 (25, 'TKI', 'Bahasa-Indonesia-TKI', 'Sedikitnya 7,5 ton pempek dikirim ke luar Palembang sebagai oleh-oleh. (2) Selain itu pempek juga berfungsi sebagai tali silahturahim. (3) Berati saat ini penggemar pempek lebih banyak dari pada tahun-tahun sebelumnya. (4) Kondisi ini dapat menggerakan ekonomi daerah. Kalimat di dalamnya terkandung hubungan perbandingan adalah nomor ...\r\n', '3', 'A. (1)', 'B. (2)', 'C. (3)', 'D. (4)', 'E. (5)'),
 (26, 'TKI', 'Bahasa-Indonesia-TKI', 'Insyaf\r\nOleh: Amir Hamzah\r\nSegala kupinta tiada kau beri\r\nSegala kutanya tiada kau sakiti\r\nBuatlah aku berdiri sendiri\r\nPenuntun tiada mimimpin jari\r\nMajas yang terdapat dalam kutipan puisi tersebut adalah...\r\n', '2', 'A. Epifora', 'B. Metonomia', 'C. Anafora', 'D. Personifikasi', 'E. Iitotes'),
-(27, '', 'Bahasa-Indonesia-ADM-Perkantoran', 'Minat investor  asing yang tinggi ke negara berkembang bisa dilihat dari transaksi yang terjadi di pasar modal. Dalam tiga tahun terakhir, arus modal asing ke pasar saham dan pasar uang di negara berkembang sangat besar.\r\nMakna istilah investor pada paragraf di atas adalah ...\r\n', '3', 'A. nasabah', 'B. pengusaha', 'C. penanam modal', 'D. penguasa ', 'E. pemilik'),
-(28, '', 'Bahasa-Indonesia-ADM-Perkantoran', 'Bila anda gemar melakukan perjalanan jauh dengan menggunakan pesawat, berikut ini merupakan cara untuk mendapatkan kenyamanan. Untuk dapat memperoleh kenyamanan, biasakan datang lebih awal, saat memilih tiket pilihan tempat duduk di belakang atau tengah. Hal lain, pilah barang bawaan menjadi dua bagian untuk di kabin dan untuk masuk bagasi. Dalam penerbangan, pakaliah sepatu yang mudah dilepas dan siapkan bacaan.', '3', 'A. Cara melakukan penerbangan yang praktis.', 'B. Strategi dalam melakukanh penerbangan.', 'C. Cara memperoleh kenyamanan dalam penerbangan.', 'D. Hal-hal yang perlu dilakukan dalam penerbangan.', 'E. Kiat-kiat melakukan penerbangan jauh.'),
-(29, '', 'Bahasa-Indonesia-ADM-Perkantoran', 'Perubahan iklim merupakan fenomena yang dipicu oleh kegiatan manusia, terutama yang berkaitan dengan penggunakan bahan bakar fosil dan kegiatan alih guna lahan. Kegiatan tersebut dapat menghasilkan gas yang semakin lama, semakin banyak jumlahnya di atmosfir. Gas-gas tersebut memiliki sifat seperti kaca yang meneruskan radiasi cahaya matahari sehingga suhu atmosfir bumi meningkat. Inilah yang disebut efek rumah kaca yang mengakibatkan pemanasan global.', '4', 'A. Gas-gas hasil pembakaran mematikan ribuan spesies.', 'B. Suhu atmosfir bumi meningkat karena sedikitnya rumah kaca.', 'C. Rumah yang banyak menggunakan bahan kaca.', 'D. Pemanasan global akibat efek rumah kaca.', 'E. Bumi semakin hari semakin padat penduduknya.'),
-(30, '', 'Bahasa-Indonesia-ADM-Perkantoran', 'Susah lebih dari lima jam jaringan listrik didekat SMK Balikpapan rusak.Pihak PLN sedang berusaha memperbaiki kerusakan tersebut. Karena kerusakan itu, pelakaran praktik boga dan busana dihentikan. Maklum saja, dalam berpraktik mereka menggunakan peralatan listrik. Jadi, jika listrik padam meraka tidak bisa praktik memasak dan menjahit.\r\nPertanyaan yang sesuai dengan isi paragraf tersebut adalah...', '2', 'A. Para siswa merasa senang tidak melanjutkan praktik.', 'B. Ketika listrik padam pelajaran praktik dihentikan.', 'C. Para siswa merasa senang saat praktik dibengkel.', 'D. Pemadaman listrik setiap hari merupakan hal yang biasa.', 'E. PLN masih mencari penyebab padamnya listrik.'),
-(31, '', 'Bahasa-Indonesia-ADM-Perkantoran', 'Katakan tidak untuk narkoba!\r\nIsi teks iklan tersebut adalah ...\r\n', '3', 'A. Hati-hati jika ada orang yang menawari narkoba.', 'B. Sekali anda mencoba narkoba pasti anda ketagihan.', 'C. Jangan sekali-sekali menggunakan narkoba.', 'D. Hati-hati terhadap orang yang membawa narkoba.', 'E. Jangan mendekati korban narkoba.'),
-(32, '', 'Bahasa-Indonesia-ADM-Perkantoran', '(1) Akhir-akhir ini jumlah penduduk dikota-kota besar seperti Jakarta mengalami  kenaikan yang signifikan. (2) Kenaikan jumlah penduduk ini disebabkan oleh sebuah fenoma sosial yang terjadi belakangan ini, yaitu urbananisasi. (3) Fenomena inilah yang menyebabkan laju pertumbuhunan penduduk yang tidak terbendung sehingga dapat menyebabkan beberapa permasalahan yang timbul dikota besar. (4) Mengapa hal ini sampai terjadi ? (5) Banyak faktor yang mendorong fenomena ini. Kalimat yang didalamnya terkandung hubungan sebab akibat dalam paragraf tersebut terdapat pada nomer ...\r\n', '3', 'A. (1)', 'B. (2)', 'C. (3)', 'D. (4)', 'E. (5)'),
-(33, '', 'Bahasa-Indonesia-ADM-Perkantoran', 'Perajin kain songket tradisional Minangkabau, Sumatra Barat, bertahan dengan motif kuno berusia ratusan tahun. Perajin memunculkan kembali motif kuno dari songket tua yang tersimpan. Untuk menjaga keaslian produksi, perajin menggunakan alat songket bukan mesin.\r\nTanggapan logis terhadap paragraf tersebut adalah....\r\n', '4', 'A. Perajin kain songket tradisional Minangkabau bertahan pada motif kuno.', 'B. Motif kuno yang dipertahankan perajinan berusia ratusan tahun.', 'C. Jenis songket tua yang tersimpan kembali dimunculkan.', 'D. Untuk menjaga keaslian produksi, penggunaan alat songket perlu dipertahankan.', 'E. Mesin tidak cocok untuk para perajin kain songket.'),
-(34, '', 'Bahasa-Indonesia-ADM-Perkantoran', 'Kartini lahir di Jepara, Jawa tengah, pada tanggal 21 april 1897. Kartini adalah putri dari Adipati Ario Sosrodiningrat, Bupati Jepara, dan M.A Ngasirah, putri dari Nyai Siti Aminah dan Kyai Haji Madirono, seorang guru agama di Telukawur, Jepara.\r\nPada usia dua belas tahun, Kartini harus mengalami masa pingitan. Kartini harus mengalami masa pingitan. Kartini dipingit karena tradisi di tempat tinggalnya. Apabila seorang gadis sudah menamatkan belajar di tingkat sekolah dasar, gadis tersebut harus mengalami masa pingitan hingga pernikahannya tiba. Ringkasan yang sesuai dengan kutipan teks tersebut adalah ...\r\n', '2', 'A. Kartini mengalami masa pingitan selama dua belas tahhun setelah lulus sekolah dasar sampai pernikahaannya.', 'B. Kartini putri seorang bupati dan cucu seorang guru agama, mengalami masa pingitan karena tradisi di tempat tinggalnya.', 'C. Kartini lahir dan dibesarkan di Jepara. Setelah tamat sekolah dasar, setelah tamat sekolah dasar dia melanjutkan kesekolah yang lebih tinggi karna beliau anak bangsawan.', 'D. Kartini sudah menamatkan sekolah dasarnya dan harus dipingit selama dua belas tahun.', 'E. Kartini anak seorang bangsawan, bebas melanjutkan pendidikannya, tetapi juga harus menjalani masa pingitan karena tradisi ditempat tinggalnya.'),
-(35, '', 'Bahasa-Indonesia-ADM-Perkantoran', 'Sedikitnya 7,5 ton pempek dikirim ke luar Palembang sebagai oleh-oleh. (2) Selain itu pempek juga berfungsi sebagai tali silahturahim. (3) Berati saat ini penggemar pempek lebih banyak dari pada tahun-tahun sebelumnya. (4) Kondisi ini dapat menggerakan ekonomi daerah. Kalimat di dalamnya terkandung hubungan perbandingan adalah nomor ...\r\n', '3', 'A. (1)', 'B. (2)', 'C. (3)', 'D. (4)', 'E. (5)'),
-(36, '', 'Bahasa-Indonesia-ADM-Perkantoran', 'Insyaf\r\nOleh: Amir Hamzah\r\nSegala kupinta tiada kau beri\r\nSegala kutanya tiada kau sakiti\r\nBuatlah aku berdiri sendiri\r\nPenuntun tiada mimimpin jari\r\nMajas yang terdapat dalam kutipan puisi tersebut adalah...\r\n', '3', 'A. Epifora', 'B. Metonomia', 'C. Anafora', 'D. Personifikasi', 'E. Iitotes'),
-(37, 'Akutansi', 'Bahasa-Indonesia-Akutansi', 'Minat investor  asing yang tinggi ke negara berkembang bisa dilihat dari transaksi yang terjadi di pasar modal. Dalam tiga tahun terakhir, arus modal asing ke pasar saham dan pasar uang di negara berkembang sangat besar.\r\nMakna istilah investor pada paragraf di atas adalah ...\r\n', '3', 'A. nasabah', 'B. pengusaha', 'C. penanam modal', 'D. penguasa ', 'E. pemilik'),
-(38, 'Akutansi', 'Bahasa-Indonesia-Akutansi', 'Bila anda gemar melakukan perjalanan jauh dengan menggunakan pesawat, berikut ini merupakan cara untuk mendapatkan kenyamanan. Untuk dapat memperoleh kenyamanan, biasakan datang lebih awal, saat memilih tiket pilihan tempat duduk di belakang atau tengah. Hal lain, pilah barang bawaan menjadi dua bagian untuk di kabin dan untuk masuk bagasi. Dalam penerbangan, pakaliah sepatu yang mudah dilepas dan siapkan bacaan.', '3', 'A. Cara melakukan penerbangan yang praktis.', 'B. Strategi dalam melakukanh penerbangan.', 'C. Cara memperoleh kenyamanan dalam penerbangan.', 'D. Hal-hal yang perlu dilakukan dalam penerbangan.', 'E. Kiat-kiat melakukan penerbangan jauh.'),
-(39, 'Akutansi', 'Bahasa-Indonesia-Akutansi', 'Perubahan iklim merupakan fenomena yang dipicu oleh kegiatan manusia, terutama yang berkaitan dengan penggunakan bahan bakar fosil dan kegiatan alih guna lahan. Kegiatan tersebut dapat menghasilkan gas yang semakin lama, semakin banyak jumlahnya di atmosfir. Gas-gas tersebut memiliki sifat seperti kaca yang meneruskan radiasi cahaya matahari sehingga suhu atmosfir bumi meningkat. Inilah yang disebut efek rumah kaca yang mengakibatkan pemanasan global.', '4', 'A. Gas-gas hasil pembakaran mematikan ribuan spesies.', 'B. Suhu atmosfir bumi meningkat karena sedikitnya rumah kaca.', 'C. Rumah yang banyak menggunakan bahan kaca.', 'D. Pemanasan global akibat efek rumah kaca.', 'E. Bumi semakin hari semakin padat penduduknya.'),
-(40, 'Akutansi', 'Bahasa-Indonesia-Akutansi', 'Susah lebih dari lima jam jaringan listrik didekat SMK Balikpapan rusak.Pihak PLN sedang berusaha memperbaiki kerusakan tersebut. Karena kerusakan itu, pelakaran praktik boga dan busana dihentikan. Maklum saja, dalam berpraktik mereka menggunakan peralatan listrik. Jadi, jika listrik padam meraka tidak bisa praktik memasak dan menjahit.\r\nPertanyaan yang sesuai dengan isi paragraf tersebut adalah...\r\n', '2', 'A. Para siswa merasa senang tidak melanjutkan praktik.', 'B. Ketika listrik padam pelajaran praktik dihentikan.', 'C. Para siswa merasa senang saat praktik dibengkel.', 'D. Pemadaman listrik setiap hari merupakan hal yang biasa.', 'E. PLN masih mencari penyebab padamnya listrik.'),
-(41, 'Akutansi', 'Bahasa-Indonesia-Akutansi', 'Katakan tidak untuk narkoba!\r\nIsi teks iklan tersebut adalah ...\r\n', '3', 'A. Hati-hati jika ada orang yang menawari narkoba.', 'B. Sekali anda mencoba narkoba pasti anda ketagihan.', 'C. Jangan sekali-sekali menggunakan narkoba.', 'D. Hati-hati terhadap orang yang membawa narkoba.', 'E. Jangan mendekati korban narkoba.'),
-(42, 'Akutansi', 'Bahasa-Indonesia-Akutansi', '(1) Akhir-akhir ini jumlah penduduk dikota-kota besar seperti Jakarta mengalami  kenaikan yang signifikan. (2) Kenaikan jumlah penduduk ini disebabkan oleh sebuah fenoma sosial yang terjadi belakangan ini, yaitu urbananisasi. (3) Fenomena inilah yang menyebabkan laju pertumbuhunan penduduk yang tidak terbendung sehingga dapat menyebabkan beberapa permasalahan yang timbul dikota besar. (4) Mengapa hal ini sampai terjadi ? (5) Banyak faktor yang mendorong fenomena ini.\r\nKalimat yang didalamnya terkandung hubungan sebab akibat dalam paragraf tersebut terdapat pada nomer ...\r\n', '3', 'A. (1)', 'B. (2)', 'C. (3)', 'D. (4)', 'E. (5)'),
-(43, 'Akutansi', 'Bahasa-Indonesia-Akutansi', 'Perajin kain songket tradisional Minangkabau, Sumatra Barat, bertahan dengan motif kuno berusia ratusan tahun. Perajin memunculkan kembali motif kuno dari songket tua yang tersimpan. Untuk menjaga keaslian produksi, perajin menggunakan alat songket bukan mesin.\r\nTanggapan logis terhadap paragraf tersebut adalah....\r\n', '4', 'A. Perajin kain songket tradisional Minangkabau bertahan pada motif kuno.', 'B. Motif kuno yang dipertahankan perajinan berusia ratusan tahun.', 'C. Jenis songket tua yang tersimpan kembali dimunculkan.', 'D. Untuk menjaga keaslian produksi, penggunaan alat songket perlu dipertahankan.', 'E. Mesin tidak cocok untuk para perajin kain songket.'),
-(44, 'Akutansi', 'Bahasa-Indonesia-Akutansi', 'Kartini lahir di Jepara, Jawa tengah, pada tanggal 21 april 1897. Kartini adalah putri dari Adipati Ario Sosrodiningrat, Bupati Jepara, dan M.A Ngasirah, putri dari Nyai Siti Aminah dan Kyai Haji Madirono, seorang guru agama di Telukawur, Jepara.\r\nPada usia dua belas tahun, Kartini harus mengalami masa pingitan. Kartini harus mengalami masa pingitan. Kartini dipingit karena tradisi di tempat tinggalnya. Apabila seorang gadis sudah menamatkan belajar di tingkat sekolah dasar, gadis tersebut harus mengalami masa pingitan hingga pernikahannya tiba. Ringkasan yang sesuai dengan kutipan teks tersebut adalah ...\r\n', '2', 'A. Kartini mengalami masa pingitan selama dua belas tahhun setelah lulus sekolah dasar sampai pernikahaannya.', 'B. Kartini putri seorang bupati dan cucu seorang guru agama, mengalami masa pingitan karena tradisi di tempat tinggalnya', 'C. Kartini lahir dan dibesarkan di Jepara. Setelah tamat sekolah dasar, setelah tamat sekolah dasar dia melanjutkan kesekolah yang lebih tinggi karna beliau anak bangsawan.', 'D. Kartini sudah menamatkan sekolah dasarnya dan harus dipingit selama dua belas tahun.', 'E. Kartini anak seorang bangsawan, bebas melanjutkan pendidikannya, tetapi juga harus menjalani masa pingitan karena tradisi ditempat tinggalnya.'),
-(45, 'Akutansi', 'Bahasa-Indonesia-Akutansi', 'Sedikitnya 7,5 ton pempek dikirim ke luar Palembang sebagai oleh-oleh. (2) Selain itu pempek juga berfungsi sebagai tali silahturahim. (3) Berati saat ini penggemar pempek lebih banyak dari pada tahun-tahun sebelumnya. (4) Kondisi ini dapat menggerakan ekonomi daerah. Kalimat di dalamnya terkandung hubungan perbandingan adalah nomor ...\r\n', '3', 'A. (1)', 'B. (2)', 'C. (3)', 'D. (4)', 'E. (5)'),
-(46, 'Akutansi', 'Bahasa-Indonesia-Akutansi', 'Insyaf\r\nOleh: Amir Hamzah\r\nSegala kupinta tiada kau beri\r\nSegala kutanya tiada kau sakiti\r\nBuatlah aku berdiri sendiri\r\nPenuntun tiada mimimpin jari\r\nMajas yang terdapat dalam kutipan puisi tersebut adalah...', '3', 'A. Epifora', 'B. Metonomia', 'C. Anafora', 'D. Personifikasi', 'E. Iitotes'),
+(27, 'ADM-Perkantoran', 'Bahasa-Indonesia-ADM-Perkantoran', 'Minat investor  asing yang tinggi ke negara berkembang bisa dilihat dari transaksi yang terjadi di pasar modal. Dalam tiga tahun terakhir, arus modal asing ke pasar saham dan pasar uang di negara berkembang sangat besar.\r\nMakna istilah investor pada paragraf di atas adalah ...\r\n', '3', 'A. nasabah', 'B. pengusaha', 'C. penanam modal', 'D. penguasa ', 'E. pemilik'),
+(28, 'ADM-Perkantoran', 'Bahasa-Indonesia-ADM-Perkantoran', 'Bila anda gemar melakukan perjalanan jauh dengan menggunakan pesawat, berikut ini merupakan cara untuk mendapatkan kenyamanan. Untuk dapat memperoleh kenyamanan, biasakan datang lebih awal, saat memilih tiket pilihan tempat duduk di belakang atau tengah. Hal lain, pilah barang bawaan menjadi dua bagian untuk di kabin dan untuk masuk bagasi. Dalam penerbangan, pakaliah sepatu yang mudah dilepas dan siapkan bacaan.', '3', 'A. Cara melakukan penerbangan yang praktis.', 'B. Strategi dalam melakukanh penerbangan.', 'C. Cara memperoleh kenyamanan dalam penerbangan.', 'D. Hal-hal yang perlu dilakukan dalam penerbangan.', 'E. Kiat-kiat melakukan penerbangan jauh.'),
+(29, 'ADM-Perkantoran', 'Bahasa-Indonesia-ADM-Perkantoran', 'Perubahan iklim merupakan fenomena yang dipicu oleh kegiatan manusia, terutama yang berkaitan dengan penggunakan bahan bakar fosil dan kegiatan alih guna lahan. Kegiatan tersebut dapat menghasilkan gas yang semakin lama, semakin banyak jumlahnya di atmosfir. Gas-gas tersebut memiliki sifat seperti kaca yang meneruskan radiasi cahaya matahari sehingga suhu atmosfir bumi meningkat. Inilah yang disebut efek rumah kaca yang mengakibatkan pemanasan global.', '4', 'A. Gas-gas hasil pembakaran mematikan ribuan spesies.', 'B. Suhu atmosfir bumi meningkat karena sedikitnya rumah kaca.', 'C. Rumah yang banyak menggunakan bahan kaca.', 'D. Pemanasan global akibat efek rumah kaca.', 'E. Bumi semakin hari semakin padat penduduknya.'),
+(30, 'ADM-Perkantoran', 'Bahasa-Indonesia-ADM-Perkantoran', 'Susah lebih dari lima jam jaringan listrik didekat SMK Balikpapan rusak.Pihak PLN sedang berusaha memperbaiki kerusakan tersebut. Karena kerusakan itu, pelakaran praktik boga dan busana dihentikan. Maklum saja, dalam berpraktik mereka menggunakan peralatan listrik. Jadi, jika listrik padam meraka tidak bisa praktik memasak dan menjahit.\r\nPertanyaan yang sesuai dengan isi paragraf tersebut adalah...', '2', 'A. Para siswa merasa senang tidak melanjutkan praktik.', 'B. Ketika listrik padam pelajaran praktik dihentikan.', 'C. Para siswa merasa senang saat praktik dibengkel.', 'D. Pemadaman listrik setiap hari merupakan hal yang biasa.', 'E. PLN masih mencari penyebab padamnya listrik.'),
+(31, 'ADM-Perkantoran', 'Bahasa-Indonesia-ADM-Perkantoran', 'Katakan tidak untuk narkoba!\r\nIsi teks iklan tersebut adalah ...\r\n', '3', 'A. Hati-hati jika ada orang yang menawari narkoba.', 'B. Sekali anda mencoba narkoba pasti anda ketagihan.', 'C. Jangan sekali-sekali menggunakan narkoba.', 'D. Hati-hati terhadap orang yang membawa narkoba.', 'E. Jangan mendekati korban narkoba.'),
+(32, 'ADM-Perkantoran', 'Bahasa-Indonesia-ADM-Perkantoran', '(1) Akhir-akhir ini jumlah penduduk dikota-kota besar seperti Jakarta mengalami  kenaikan yang signifikan. (2) Kenaikan jumlah penduduk ini disebabkan oleh sebuah fenoma sosial yang terjadi belakangan ini, yaitu urbananisasi. (3) Fenomena inilah yang menyebabkan laju pertumbuhunan penduduk yang tidak terbendung sehingga dapat menyebabkan beberapa permasalahan yang timbul dikota besar. (4) Mengapa hal ini sampai terjadi ? (5) Banyak faktor yang mendorong fenomena ini. Kalimat yang didalamnya terkandung hubungan sebab akibat dalam paragraf tersebut terdapat pada nomer ...\r\n', '3', 'A. (1)', 'B. (2)', 'C. (3)', 'D. (4)', 'E. (5)'),
+(33, 'ADM-Perkantoran', 'Bahasa-Indonesia-ADM-Perkantoran', 'Perajin kain songket tradisional Minangkabau, Sumatra Barat, bertahan dengan motif kuno berusia ratusan tahun. Perajin memunculkan kembali motif kuno dari songket tua yang tersimpan. Untuk menjaga keaslian produksi, perajin menggunakan alat songket bukan mesin.\r\nTanggapan logis terhadap paragraf tersebut adalah....\r\n', '4', 'A. Perajin kain songket tradisional Minangkabau bertahan pada motif kuno.', 'B. Motif kuno yang dipertahankan perajinan berusia ratusan tahun.', 'C. Jenis songket tua yang tersimpan kembali dimunculkan.', 'D. Untuk menjaga keaslian produksi, penggunaan alat songket perlu dipertahankan.', 'E. Mesin tidak cocok untuk para perajin kain songket.'),
+(34, 'ADM-Perkantoran', 'Bahasa-Indonesia-ADM-Perkantoran', 'Kartini lahir di Jepara, Jawa tengah, pada tanggal 21 april 1897. Kartini adalah putri dari Adipati Ario Sosrodiningrat, Bupati Jepara, dan M.A Ngasirah, putri dari Nyai Siti Aminah dan Kyai Haji Madirono, seorang guru agama di Telukawur, Jepara.\r\nPada usia dua belas tahun, Kartini harus mengalami masa pingitan. Kartini harus mengalami masa pingitan. Kartini dipingit karena tradisi di tempat tinggalnya. Apabila seorang gadis sudah menamatkan belajar di tingkat sekolah dasar, gadis tersebut harus mengalami masa pingitan hingga pernikahannya tiba. Ringkasan yang sesuai dengan kutipan teks tersebut adalah ...\r\n', '2', 'A. Kartini mengalami masa pingitan selama dua belas tahhun setelah lulus sekolah dasar sampai pernikahaannya.', 'B. Kartini putri seorang bupati dan cucu seorang guru agama, mengalami masa pingitan karena tradisi di tempat tinggalnya.', 'C. Kartini lahir dan dibesarkan di Jepara. Setelah tamat sekolah dasar, setelah tamat sekolah dasar dia melanjutkan kesekolah yang lebih tinggi karna beliau anak bangsawan.', 'D. Kartini sudah menamatkan sekolah dasarnya dan harus dipingit selama dua belas tahun.', 'E. Kartini anak seorang bangsawan, bebas melanjutkan pendidikannya, tetapi juga harus menjalani masa pingitan karena tradisi ditempat tinggalnya.'),
+(35, 'ADM-Perkantoran', 'Bahasa-Indonesia-ADM-Perkantoran', 'Sedikitnya 7,5 ton pempek dikirim ke luar Palembang sebagai oleh-oleh. (2) Selain itu pempek juga berfungsi sebagai tali silahturahim. (3) Berati saat ini penggemar pempek lebih banyak dari pada tahun-tahun sebelumnya. (4) Kondisi ini dapat menggerakan ekonomi daerah. Kalimat di dalamnya terkandung hubungan perbandingan adalah nomor ...\r\n', '3', 'A. (1)', 'B. (2)', 'C. (3)', 'D. (4)', 'E. (5)'),
+(36, 'ADM-Perkantoran', 'Bahasa-Indonesia-ADM-Perkantoran', 'Insyaf\r\nOleh: Amir Hamzah\r\nSegala kupinta tiada kau beri\r\nSegala kutanya tiada kau sakiti\r\nBuatlah aku berdiri sendiri\r\nPenuntun tiada mimimpin jari\r\nMajas yang terdapat dalam kutipan puisi tersebut adalah...\r\n', '3', 'A. Epifora', 'B. Metonomia', 'C. Anafora', 'D. Personifikasi', 'E. Iitotes'),
+(37, 'Akuntansi', 'Bahasa-Indonesia-Akutansi', 'Minat investor  asing yang tinggi ke negara berkembang bisa dilihat dari transaksi yang terjadi di pasar modal. Dalam tiga tahun terakhir, arus modal asing ke pasar saham dan pasar uang di negara berkembang sangat besar.\r\nMakna istilah investor pada paragraf di atas adalah ...\r\n', '3', 'A. nasabah', 'B. pengusaha', 'C. penanam modal', 'D. penguasa ', 'E. pemilik'),
+(38, 'Akuntansi', 'Bahasa-Indonesia-Akutansi', 'Bila anda gemar melakukan perjalanan jauh dengan menggunakan pesawat, berikut ini merupakan cara untuk mendapatkan kenyamanan. Untuk dapat memperoleh kenyamanan, biasakan datang lebih awal, saat memilih tiket pilihan tempat duduk di belakang atau tengah. Hal lain, pilah barang bawaan menjadi dua bagian untuk di kabin dan untuk masuk bagasi. Dalam penerbangan, pakaliah sepatu yang mudah dilepas dan siapkan bacaan.', '3', 'A. Cara melakukan penerbangan yang praktis.', 'B. Strategi dalam melakukanh penerbangan.', 'C. Cara memperoleh kenyamanan dalam penerbangan.', 'D. Hal-hal yang perlu dilakukan dalam penerbangan.', 'E. Kiat-kiat melakukan penerbangan jauh.'),
+(39, 'Akuntansi', 'Bahasa-Indonesia-Akutansi', 'Perubahan iklim merupakan fenomena yang dipicu oleh kegiatan manusia, terutama yang berkaitan dengan penggunakan bahan bakar fosil dan kegiatan alih guna lahan. Kegiatan tersebut dapat menghasilkan gas yang semakin lama, semakin banyak jumlahnya di atmosfir. Gas-gas tersebut memiliki sifat seperti kaca yang meneruskan radiasi cahaya matahari sehingga suhu atmosfir bumi meningkat. Inilah yang disebut efek rumah kaca yang mengakibatkan pemanasan global.', '4', 'A. Gas-gas hasil pembakaran mematikan ribuan spesies.', 'B. Suhu atmosfir bumi meningkat karena sedikitnya rumah kaca.', 'C. Rumah yang banyak menggunakan bahan kaca.', 'D. Pemanasan global akibat efek rumah kaca.', 'E. Bumi semakin hari semakin padat penduduknya.'),
+(40, 'Akuntansi', 'Bahasa-Indonesia-Akutansi', 'Susah lebih dari lima jam jaringan listrik didekat SMK Balikpapan rusak.Pihak PLN sedang berusaha memperbaiki kerusakan tersebut. Karena kerusakan itu, pelakaran praktik boga dan busana dihentikan. Maklum saja, dalam berpraktik mereka menggunakan peralatan listrik. Jadi, jika listrik padam meraka tidak bisa praktik memasak dan menjahit.\r\nPertanyaan yang sesuai dengan isi paragraf tersebut adalah...\r\n', '2', 'A. Para siswa merasa senang tidak melanjutkan praktik.', 'B. Ketika listrik padam pelajaran praktik dihentikan.', 'C. Para siswa merasa senang saat praktik dibengkel.', 'D. Pemadaman listrik setiap hari merupakan hal yang biasa.', 'E. PLN masih mencari penyebab padamnya listrik.'),
+(41, 'Akuntansi', 'Bahasa-Indonesia-Akutansi', 'Katakan tidak untuk narkoba!\r\nIsi teks iklan tersebut adalah ...\r\n', '3', 'A. Hati-hati jika ada orang yang menawari narkoba.', 'B. Sekali anda mencoba narkoba pasti anda ketagihan.', 'C. Jangan sekali-sekali menggunakan narkoba.', 'D. Hati-hati terhadap orang yang membawa narkoba.', 'E. Jangan mendekati korban narkoba.'),
+(42, 'Akuntansi', 'Bahasa-Indonesia-Akutansi', '(1) Akhir-akhir ini jumlah penduduk dikota-kota besar seperti Jakarta mengalami  kenaikan yang signifikan. (2) Kenaikan jumlah penduduk ini disebabkan oleh sebuah fenoma sosial yang terjadi belakangan ini, yaitu urbananisasi. (3) Fenomena inilah yang menyebabkan laju pertumbuhunan penduduk yang tidak terbendung sehingga dapat menyebabkan beberapa permasalahan yang timbul dikota besar. (4) Mengapa hal ini sampai terjadi ? (5) Banyak faktor yang mendorong fenomena ini.\r\nKalimat yang didalamnya terkandung hubungan sebab akibat dalam paragraf tersebut terdapat pada nomer ...\r\n', '3', 'A. (1)', 'B. (2)', 'C. (3)', 'D. (4)', 'E. (5)'),
+(43, 'Akuntansi', 'Bahasa-Indonesia-Akutansi', 'Perajin kain songket tradisional Minangkabau, Sumatra Barat, bertahan dengan motif kuno berusia ratusan tahun. Perajin memunculkan kembali motif kuno dari songket tua yang tersimpan. Untuk menjaga keaslian produksi, perajin menggunakan alat songket bukan mesin.\r\nTanggapan logis terhadap paragraf tersebut adalah....\r\n', '4', 'A. Perajin kain songket tradisional Minangkabau bertahan pada motif kuno.', 'B. Motif kuno yang dipertahankan perajinan berusia ratusan tahun.', 'C. Jenis songket tua yang tersimpan kembali dimunculkan.', 'D. Untuk menjaga keaslian produksi, penggunaan alat songket perlu dipertahankan.', 'E. Mesin tidak cocok untuk para perajin kain songket.'),
+(44, 'Akuntansi', 'Bahasa-Indonesia-Akutansi', 'Kartini lahir di Jepara, Jawa tengah, pada tanggal 21 april 1897. Kartini adalah putri dari Adipati Ario Sosrodiningrat, Bupati Jepara, dan M.A Ngasirah, putri dari Nyai Siti Aminah dan Kyai Haji Madirono, seorang guru agama di Telukawur, Jepara.\r\nPada usia dua belas tahun, Kartini harus mengalami masa pingitan. Kartini harus mengalami masa pingitan. Kartini dipingit karena tradisi di tempat tinggalnya. Apabila seorang gadis sudah menamatkan belajar di tingkat sekolah dasar, gadis tersebut harus mengalami masa pingitan hingga pernikahannya tiba. Ringkasan yang sesuai dengan kutipan teks tersebut adalah ...\r\n', '2', 'A. Kartini mengalami masa pingitan selama dua belas tahhun setelah lulus sekolah dasar sampai pernikahaannya.', 'B. Kartini putri seorang bupati dan cucu seorang guru agama, mengalami masa pingitan karena tradisi di tempat tinggalnya', 'C. Kartini lahir dan dibesarkan di Jepara. Setelah tamat sekolah dasar, setelah tamat sekolah dasar dia melanjutkan kesekolah yang lebih tinggi karna beliau anak bangsawan.', 'D. Kartini sudah menamatkan sekolah dasarnya dan harus dipingit selama dua belas tahun.', 'E. Kartini anak seorang bangsawan, bebas melanjutkan pendidikannya, tetapi juga harus menjalani masa pingitan karena tradisi ditempat tinggalnya.'),
+(45, 'Akuntansi', 'Bahasa-Indonesia-Akutansi', 'Sedikitnya 7,5 ton pempek dikirim ke luar Palembang sebagai oleh-oleh. (2) Selain itu pempek juga berfungsi sebagai tali silahturahim. (3) Berati saat ini penggemar pempek lebih banyak dari pada tahun-tahun sebelumnya. (4) Kondisi ini dapat menggerakan ekonomi daerah. Kalimat di dalamnya terkandung hubungan perbandingan adalah nomor ...\r\n', '3', 'A. (1)', 'B. (2)', 'C. (3)', 'D. (4)', 'E. (5)'),
+(46, 'Akuntansi', 'Bahasa-Indonesia-Akutansi', 'Insyaf\r\nOleh: Amir Hamzah\r\nSegala kupinta tiada kau beri\r\nSegala kutanya tiada kau sakiti\r\nBuatlah aku berdiri sendiri\r\nPenuntun tiada mimimpin jari\r\nMajas yang terdapat dalam kutipan puisi tersebut adalah...', '3', 'A. Epifora', 'B. Metonomia', 'C. Anafora', 'D. Personifikasi', 'E. Iitotes'),
 (47, 'Pemasaran', 'Bahasa-Indonesia-Pemasaran', 'Minat investor  asing yang tinggi ke negara berkembang bisa dilihat dari transaksi yang terjadi di pasar modal. Dalam tiga tahun terakhir, arus modal asing ke pasar saham dan pasar uang di negara berkembang sangat besar.\r\nMakna istilah investor pada paragraf di atas adalah ...\r\n', '3', 'A. nasabah', 'B. pengusaha', 'C. penanam modal', 'D. penguasa ', 'E. pemilik'),
 (48, 'Pemasaran', 'Bahasa-Indonesia-Pemasaran', 'Bila anda gemar melakukan perjalanan jauh dengan menggunakan pesawat, berikut ini merupakan cara untuk mendapatkan kenyamanan. Untuk dapat memperoleh kenyamanan, biasakan datang lebih awal, saat memilih tiket pilihan tempat duduk di belakang atau tengah. Hal lain, pilah barang bawaan menjadi dua bagian untuk di kabin dan untuk masuk bagasi. Dalam penerbangan, pakaliah sepatu yang mudah dilepas dan siapkan bacaan.', '3', 'A. Cara melakukan penerbangan yang praktis.', 'B. Strategi dalam melakukanh penerbangan.', 'C. Cara memperoleh kenyamanan dalam penerbangan.', 'D. Hal-hal yang perlu dilakukan dalam penerbangan.', 'E. Kiat-kiat melakukan penerbangan jauh.'),
 (49, 'Pemasaran', 'Bahasa-Indonesia-Pemasaran', 'Perubahan iklim merupakan fenomena yang dipicu oleh kegiatan manusia, terutama yang berkaitan dengan penggunakan bahan bakar fosil dan kegiatan alih guna lahan. Kegiatan tersebut dapat menghasilkan gas yang semakin lama, semakin banyak jumlahnya di atmosfir. Gas-gas tersebut memiliki sifat seperti kaca yang meneruskan radiasi cahaya matahari sehingga suhu atmosfir bumi meningkat. Inilah yang disebut efek rumah kaca yang mengakibatkan pemanasan global.', '4', 'A. Gas-gas hasil pembakaran mematikan ribuan spesies.', 'B. Suhu atmosfir bumi meningkat karena sedikitnya rumah kaca.', 'C. Rumah yang banyak menggunakan bahan kaca.', 'D. Pemanasan global akibat efek rumah kaca.', 'E. Bumi semakin hari semakin padat penduduknya.'),
@@ -248,7 +253,7 @@ INSERT INTO `tb_soal` (`id_soal`, `jurusan`, `nama_mapel`, `pertanyaan`, `jawaba
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_users`
+-- Struktur dari tabel `tb_users`
 --
 
 CREATE TABLE `tb_users` (
@@ -262,7 +267,7 @@ CREATE TABLE `tb_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_users`
+-- Dumping data untuk tabel `tb_users`
 --
 
 INSERT INTO `tb_users` (`id_users`, `nama`, `email`, `username`, `password`, `level`, `status`) VALUES
@@ -318,31 +323,38 @@ ALTER TABLE `tb_users`
 --
 ALTER TABLE `tb_bahas`
   MODIFY `id_bahas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `tb_mapel`
 --
 ALTER TABLE `tb_mapel`
   MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
 --
 -- AUTO_INCREMENT for table `tb_nilai`
 --
 ALTER TABLE `tb_nilai`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
   MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `tb_soal`
 --
 ALTER TABLE `tb_soal`
   MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+
 --
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
   MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

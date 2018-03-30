@@ -36,6 +36,7 @@
 		$response = new usr();
 		$response->success 	= 1;
 		$response->message 	= "Selamat datang ".$row['username'];
+		$response->id_siswa = $row['id_siswa'];
 		$response->nis 		= $row['nis'];
 		$response->nama 	= $row['nama'];
 		$response->username = $row['username'];

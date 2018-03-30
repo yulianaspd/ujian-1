@@ -390,14 +390,31 @@ class Admin extends CI_Controller {
 	}
 
 
+	function siswaper($kode = 0){
+		
+		$this->load->helper('text');
+		$user			= $this->session->userdata('login');
+		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel')->result_array();
+		$siswa 			= $this->model_admin->getSiswa("where jurusan = '$kode'")->result_array();
+		//$siswa			= $this->model_admin->selectdata('tb_siswa order by id_siswa desc')->result_array();
+		
+		$data 			= array(
+			  				'title'			=> 'Mengelola Data Siswa',
+			  				'user'			=> $this->session->userdata['nama'],
+			  				'mapels'		=> $mapels,
+			  				'siswa'			=> $siswa,
+		);
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/siswa_data');
+
+	}
+
 	function siswa(){
 		
 		$this->load->helper('text');
 		$user			= $this->session->userdata('login');
 		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel')->result_array();
-
 		$siswa			= $this->model_admin->selectdata('tb_siswa order by id_siswa desc')->result_array();
-		
 		$data 			= array(
 			  				'title'			=> 'Mengelola Data Siswa',
 			  				'user'			=> $this->session->userdata['nama'],
@@ -968,8 +985,8 @@ class Admin extends CI_Controller {
 		$this->load->helper('text');
 		$user			= $this->session->userdata('login');
 		$mapels			= $this->model_admin->selectdata('tb_mapel order by id_mapel')->result_array();
-		$nilai			= $this->model_admin->selectdata('tb_nilai order by nilai desc')->result_array();
-		
+		//$nilai			= $this->model_admin->selectdata('tb_nilai order by nilai desc')->result_array();
+		$nilai 			= $this->model_admin->get_all_nilai();
 		$data 			= array(
 			  				'title'			=> 'Mengelola Data Nilai Siswa',
 			  				'user'			=> $this->session->userdata['nama'],
@@ -1027,6 +1044,72 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/hasil_data');
 
+	}
+
+	function cetaklaporan(){
+
+		$this->load->library('pdf');
+		$user			= $this->session->userdata('login');
+		$pdf = new FPDF('l','mm','A5');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial','B',16);
+        $pdf->Cell(190,7,'SMK KRISTEN 1 Surakarta',0,1,'C');
+        $pdf->SetFont('Arial','B',12);
+        $pdf->Cell(190,7,'Data Hasil Test Bank Soal',0,1,'C');
+        $pdf->Cell(10,7,'',0,1);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(15,6,'NIS',1,0);
+        $pdf->Cell(70,6,'Nama',1,0);
+        $pdf->Cell(45,6,'Mata Pelajaran',1,0);
+        $pdf->Cell(30,6,'Jurusan',1,0);
+        $pdf->Cell(25,6,'Nilai',1,1);
+        $pdf->SetFont('Arial','',10);
+ 		$pengeluaran = $this->db->get('tb_nilai')->result();
+        foreach ($pengeluaran as $row){
+            $pdf->Cell(15,6,$row->nis,1,0);
+            $pdf->Cell(70,6,$row->nama,1,0);
+            $pdf->Cell(45,6,$row->nama_mapel,1,0);
+            $pdf->Cell(30,6,$row->jurusan,1,0);
+            $pdf->Cell(25,6,$row->nilai,1,1);
+        }
+       
+        $pdf->Output();
+	
+	}
+
+	function cetakhasil($kode = 0){
+
+		$this->load->library('pdf');
+		$user			= $this->session->userdata('login');
+		$pdf = new FPDF('l','mm','A5');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial','B',16);
+        $pdf->Cell(190,7,'SMK KRISTEN 1 Surakarta',0,1,'C');
+        $pdf->SetFont('Arial','B',12);
+        $pdf->Cell(190,7,'Data Hasil Test Bank Soal',0,1,'C');
+        $pdf->Cell(10,7,'',0,1);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(15,6,'NIS',1,0);
+        $pdf->Cell(65,6,'Nama',1,0);
+        $pdf->Cell(45,6,'Mata Pelajaran',1,0);
+        $pdf->Cell(25,6,'Jurusan',1,0);
+        $pdf->Cell(15,6,'Nilai',1,0);
+        $pdf->Cell(20,6,'Rangking',1,1);
+        $pdf->SetFont('Arial','',10);
+ 		$pengeluaran 	= $this->db->get('tb_nilai')->result();
+ 		$hasil			= $this->model_admin->getNilai("where nama_mapel = '$kode'")->result_array();
+ 		$no =1;
+        foreach ($hasil as $row){
+            $pdf->Cell(15,6,$row->nis,1,0);
+            $pdf->Cell(65,6,$row->nama,1,0);
+            $pdf->Cell(45,6,$row->nama_mapel,1,0);
+            $pdf->Cell(25,6,$row->jurusan,1,0);
+            $pdf->Cell(15,6,$row->nilai,1,0);
+            $pdf->Cell(20,6,$no++,1,1); 
+        }
+       
+        $pdf->Output();
+	
 	}
 
 

@@ -13,11 +13,12 @@
 			$nama 			= $_POST['nama'];
 			$nama_mapel 	= $_POST['nama_mapel'];
 			$jurusan	 	= $_POST['jurusan'];
+			$durasi	 		= $_POST['durasi'];
 			$benar 			= $_POST['benar'];
 			$nilai 			= $_POST['nilai'];
 			
 			//Pembuatan Syntax SQL
-			$sql = "INSERT INTO tb_nilai (nis,nama,nama_mapel,jurusan,benar,nilai) VALUES ('$nis','$nama','$nama_mapel','$jurusan','$benar','$nilai')";
+			$sql = "INSERT INTO tb_nilai (nis,nama,nama_mapel,jurusan,durasi,benar,nilai) VALUES ('$nis','$nama','$nama_mapel','$jurusan','$durasi','$benar','$nilai')";
 			
 			//Eksekusi Query database
 			if(mysqli_query($con,$sql)){

@@ -14,6 +14,7 @@
         <link href="<?php echo base_url();?>assets/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url();?>assets/css/AdminLTE.css" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" type="images/x-icon" href="<?php echo base_url();?>assets/home/images/logo.png"/>
+        
     </head>
     <body class="skin-black">
         <header class="header">
@@ -73,10 +74,26 @@
                                 <i class="fa fa-desktop"></i> <span>Beranda</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="<?php echo base_url();?>admin/siswa">
+                       <!--  <li>
+                            <a href="<?php echo base_url();?>admin/siswasemua">
                                 <i class="fa fa-desktop"></i> <span>Mengelola Data Siswa</span>
                             </a>
+                        </li> -->
+                        <li class="treeview">
+                          <a href="#">
+                            <i class="fa fa-desktop"></i> <span>Mengelola Data Siswa</span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                          </a>
+                          <ul class="treeview-menu">
+                            <li><a href="<?php echo base_url();?>admin/siswa/"><i class="fa fa-circle-o"></i> Semua Siswa</a></li>
+                            <li><a href="<?php echo base_url();?>admin/siswaper/TKI"><i class="fa fa-circle-o"></i> TKI</a></li>
+                            <li><a href="<?php echo base_url();?>admin/siswaper/ADM-Perkantoran"><i class="fa fa-circle-o"></i> ADM-Perkantoran</a></li>
+                            <li><a href="<?php echo base_url();?>admin/siswaper/Akuntansi"><i class="fa fa-circle-o"></i> Akuntansi</a></li>
+                            <li><a href="<?php echo base_url();?>admin/siswaper/Pemasaran"><i class="fa fa-circle-o"></i> Pemasaran</a></li>
+                            <li><a href="<?php echo base_url();?>admin/siswaper/Keperawatan"><i class="fa fa-circle-o"></i> Keperawatan</a></li>
+                          </ul>
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>admin/mapel">
